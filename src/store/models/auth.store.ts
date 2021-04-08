@@ -1,20 +1,20 @@
-import { action, Action, Computed, computed, Thunk, thunk } from "easy-peasy";
-import { post as postRequest } from "../api";
-import { RootModel } from "./root.store";
+import { action, Action, Computed, computed, Thunk, thunk } from "easy-peasy"
+import { post as postRequest } from "../api"
+import { RootModel } from "./root.store"
 
 interface AuthState {
-  accessToken: string;
-  loggedStatus: Computed<this, boolean>;
+  accessToken: string
+  loggedStatus: Computed<this, boolean>
 }
 
 interface AuthActions {
-  setAccessToken: Action<this, string>;
+  setAccessToken: Action<this, string>
 }
 interface AuthThunk {
-  authRegisterThunk: Thunk<this, FormData>;
-  authLoginThunk: Thunk<this, FormData, undefined, RootModel>;
-  resetMailThunk: Thunk<this, FormData, undefined, RootModel>;
-  resetPasswordThunk: Thunk<this, FormData, undefined, RootModel>;
+  authRegisterThunk: Thunk<this, FormData>
+  authLoginThunk: Thunk<this, FormData, undefined, RootModel>
+  resetMailThunk: Thunk<this, FormData, undefined, RootModel>
+  resetPasswordThunk: Thunk<this, FormData, undefined, RootModel>
 }
 
 export interface AuthModel extends AuthState, AuthActions, AuthThunk {}
@@ -26,7 +26,7 @@ const authStore: AuthModel = {
    * ACTIONS
    */
   setAccessToken: action((state, payload) => {
-    state.accessToken = payload;
+    state.accessToken = payload
   }),
   /**
    * THUNKS
@@ -35,11 +35,11 @@ const authStore: AuthModel = {
     const response = await postRequest({
       url: "/user/signup",
       body: payload,
-    });
+    })
     if (response?.status === 200) {
-      console.log("auth response ===> ", response);
+      console.log("auth response ===> ", response)
     }
-    return response;
+    return response
   }),
 
   authLoginThunk: thunk(async (actions, payload) => {
@@ -47,15 +47,15 @@ const authStore: AuthModel = {
       const response = await postRequest({
         url: "/user/auth",
         body: payload,
-      });
-      console.log("response=>", response);
+      })
+      console.log("response=>", response)
 
       if (response?.status === 200) {
-        actions.setAccessToken(response.data.token);
+        actions.setAccessToken(response.data.token)
       }
-      return response.data;
+      return response.data
     } catch (e) {
-      return e;
+      return e
     }
   }),
 
@@ -64,11 +64,11 @@ const authStore: AuthModel = {
       const response = await postRequest({
         url: "/user/resetpass",
         body: payload,
-      });
-      console.log("response=>", response);
-      return response.data;
+      })
+      console.log("response=>", response)
+      return response.data
     } catch (e) {
-      return e;
+      return e
     }
   }),
 
@@ -77,12 +77,12 @@ const authStore: AuthModel = {
       const response = await postRequest({
         url: "/user/reset_password",
         body: payload,
-      });
-      console.log("resetPasswordThunk=>", response.data);
-      return response.data;
+      })
+      console.log("resetPasswordThunk=>", response.data)
+      return response.data
     } catch (e) {
-      return e;
+      return e
     }
   }),
-};
-export default authStore;
+}
+export default authStore

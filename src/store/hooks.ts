@@ -1,5 +1,5 @@
-import { createTypedHooks } from 'easy-peasy';
-import { RootModel } from './models/root.store';
+import { createTypedHooks } from "easy-peasy";
+import { RootModel } from "./models/root.store";
 
 const {
   useStoreActions,
