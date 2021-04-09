@@ -1,15 +1,10 @@
-import React from "react"
-import Head from "next/head"
-import { motion } from "framer-motion"
-import { Header } from "./Header"
+import React from "react";
+import { motion } from "framer-motion";
+import { Header } from "./Header";
 
-export const Layout = ({ children, title = "Canabis" }: any) => {
+export const Layout = ({ children }: any) => {
   return (
     <div>
-      <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <div className="relative flex flex-col w-full min-h-screen ">
         <Header />
         <motion.main
@@ -22,5 +17,5 @@ export const Layout = ({ children, title = "Canabis" }: any) => {
         </motion.main>
       </div>
     </div>
-  )
-}
+  );
+};
