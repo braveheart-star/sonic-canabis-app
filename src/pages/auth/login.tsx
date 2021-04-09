@@ -5,10 +5,10 @@ import Link from "next/link";
 export default function login() {
   return (
     <div className="container flex min-h-screen px-4 m-auto mx-auto">
-      <div className="w-full max-w-6xl m-auto border border-blue-400">
-        <div className="grid sm:grid-cols-3">
-          <div className="w-full col-span-2 p-4 ">
-            <div className="flex-shrink-0 w-24 h-24 mx-auto">
+      <div className="w-full max-w-6xl m-auto">
+        <div className="grid lg:grid-cols-3">
+          <div className="w-full p-2 lg:col-span-2 sm:p-4 ">
+            <div className="flex-shrink-0 w-20 h-20 mx-auto lg:w-24 lg:h-24">
               <Image
                 src="/images/logo.svg"
                 alt="logo"
@@ -16,8 +16,10 @@ export default function login() {
                 height={2000}
               />
             </div>
-            <div className="w-full max-w-xl py-12 mx-auto border border-green-400">
-              <p className="text-4xl font-bold text-green-700">Welcome Back!</p>
+            <div className="w-full max-w-xl py-6 mx-auto lg:py-12">
+              <p className="text-3xl font-bold text-green-700 lg:text-4xl">
+                Welcome Back!
+              </p>
               <p className="mt-2 text-gray-400">
                 Don't have an account?
                 <Link href="./register">
@@ -29,11 +31,11 @@ export default function login() {
 
               <div className="mt-8 space-y-4 ">
                 <input
-                  className="block w-full p-2 px-4 border rounded focus:border-green-300 focus:outline-none"
+                  className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
                   placeholder="Email or username"
                 />
                 <input
-                  className="block w-full p-2 px-4 border rounded focus:border-green-300 focus:outline-none"
+                  className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
                   placeholder="Password"
                 />
                 <button className="w-full py-2 text-base font-bold text-white bg-green-500 rounded">
@@ -52,8 +54,8 @@ export default function login() {
               </div>
 
               <div className="mt-8 ">
-                <div className="grid grid-cols-1 space-y-2 sm:gap-x-4 sm:grid-cols-2">
-                  <button className="flex items-center justify-center w-full h-12 mx-auto space-x-2 text-sm text-gray-600 border border-gray-400 rounded">
+                <div className="grid grid-cols-1 space-y-2 sm:space-y-0 sm:gap-x-4 sm:grid-cols-2">
+                  <button className="flex items-center justify-center w-full h-10 mx-auto space-x-2 text-sm text-gray-600 border border-gray-400 rounded lg:h-12">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -65,7 +67,7 @@ export default function login() {
                     </svg>
                     <p>Login with Facebook</p>
                   </button>
-                  <button className="flex items-center justify-center w-full h-12 mx-auto space-x-2 text-sm text-gray-600 border border-gray-400 rounded">
+                  <button className="flex items-center justify-center w-full h-10 mx-auto space-x-2 text-sm text-gray-600 border border-gray-400 rounded lg:h-12">
                     <svg
                       width="40"
                       height="40"
@@ -97,13 +99,12 @@ export default function login() {
             </div>
           </div>
 
-          <div className="relative ">
+          <div className="relative hidden lg:block">
             <Image
               src="/images/auth/authBack.png"
               alt="Picture of the author"
               layout="fill" // required
               objectFit="cover" // change to suit your needs
-              className="hidden sm:block" // just an example
             />
           </div>
         </div>
