@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function login() {
   return (
     <div className="container flex min-h-screen px-4 m-auto mx-auto">
-      <div className="w-full max-w-6xl m-auto">
+      <div className="w-full max-w-6xl m-auto border">
         <div className="grid lg:grid-cols-3">
           <div className="w-full p-2 lg:col-span-2 sm:p-4 ">
             <div className="flex-shrink-0 w-20 h-20 mx-auto lg:w-24 lg:h-24">
