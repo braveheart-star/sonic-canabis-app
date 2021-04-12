@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function login() {
+export default function register() {
+  const [check1, setCheck1] = useState(false);
+  const [check2, setCheck2] = useState(false);
+
   return (
     <div className="container flex min-h-screen p-4 m-auto ">
       <div className="w-full max-w-6xl m-auto border">
@@ -18,13 +21,13 @@ export default function login() {
             </div>
             <div className="w-full max-w-xl py-6 mx-auto lg:py-12">
               <p className="text-3xl font-bold text-green-700 lg:text-4xl">
-                Welcome Back!
+                Welcome to Cannabis Map
               </p>
               <p className="mt-2 text-gray-400">
-                Don't have an account?
-                <Link href="./register">
+                Already have an account?
+                <Link href="./login">
                   <span className="mx-2 font-semibold text-green-500 cursor-pointer hover:underline">
-                    Register
+                    Log in
                   </span>
                 </Link>
               </p>
@@ -46,14 +49,33 @@ export default function login() {
                   required
                 />
 
+                <div className="px-4 mt-4 text-gray-500">
+                  <div className="flex items-baseline text-sm ">
+                    <input
+                      type="checkBox"
+                      onChange={(e) => setCheck1(e.target.checked)}
+                    />
+                    <p className="ml-2">
+                      Send me emails about new products, recommendations and
+                      features on CannabisMap
+                    </p>
+                  </div>
+                  <div className="flex items-baseline mt-3 text-sm ">
+                    <input
+                      type="checkBox"
+                      onChange={(e) => setCheck2(e.target.checked)}
+                    />
+                    <p className="ml-2">
+                      I agree to receive offers and emails promotion
+                    </p>
+                  </div>
+                </div>
+
                 <input
                   type="submit"
-                  value="Log in"
+                  value="Register"
                   className="w-full py-2 text-base font-bold text-white bg-green-500 rounded cursor-pointer"
                 />
-                <p className="text-right text-green-500 cursor-pointer hover:underline ">
-                  Forgot your password?
-                </p>
               </form>
               <div className="mt-8 ">
                 <div className="relative border-b ">
@@ -75,7 +97,7 @@ export default function login() {
                     >
                       <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
                     </svg>
-                    <p>Login with Facebook</p>
+                    <p>Continue with Facebook</p>
                   </button>
                   <button className="flex items-center justify-center w-full h-10 mx-auto space-x-2 text-sm text-gray-600 border border-gray-400 rounded lg:h-12">
                     <svg
@@ -102,7 +124,7 @@ export default function login() {
                         fill="#F14336"
                       />
                     </svg>
-                    <p>Login with Google</p>
+                    <p>Continue with Google</p>
                   </button>
                 </div>
               </div>
