@@ -51,9 +51,12 @@ export default function login() {
                   value="Log in"
                   className="w-full py-2 text-base font-bold text-white bg-green-500 rounded cursor-pointer"
                 />
-                <p className="text-right text-green-500 cursor-pointer hover:underline ">
-                  Forgot your password?
-                </p>
+
+                <Link href="./recover">
+                  <p className="text-right text-green-500 cursor-pointer hover:underline ">
+                    Forgot your password?
+                  </p>
+                </Link>
               </form>
               <div className="mt-8 ">
                 <div className="relative border-b ">
