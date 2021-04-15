@@ -1,6 +1,6 @@
-import { post as postRequest } from "../requests/api";
+import { post as postRequest } from "./api";
 
-export const UseAPI = {
+export const AuthAPI = {
   login: async (payload: { email: any; password: any }) => {
     try {
       const response = await postRequest({

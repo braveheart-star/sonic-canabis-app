@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import { ToastContainer } from "react-toastify";
+
 import { NotifyStatus, registerPayload } from "../../utils/interface";
 import { validateEmail, notify, validatePassword } from "../../utils/function";
-import { UseAPI } from "../../hooks/useAuth";
+import { AuthAPI } from "../../requests/AuthAPI";
 
 export default function register() {
   const [check1, setCheck1] = useState(false);
@@ -36,7 +37,7 @@ export default function register() {
   function handleRegister() {
     if (!handleFormValidation()) return;
     else {
-      UseAPI.register(registerPayload).then((res) => {
+      AuthAPI.register(registerPayload).then((res) => {
         if (res.data.error) {
           Swal.fire("Error", "Email already existed !", "error");
         } else
