@@ -1,11 +1,14 @@
 import { post as postRequest } from "../requests/api";
 
 export const UseAPI = {
-  login: async (payload: any) => {
+  login: async (payload: { email: any; password: any }) => {
     try {
       const response = await postRequest({
         url: "/user/login",
-        body: payload,
+        body: {
+          email: payload.email,
+          password: payload.password,
+        },
       });
 
       return response;
@@ -14,13 +17,15 @@ export const UseAPI = {
     }
   },
 
-  register: async (payload: any) => {
+  register: async (payload: { email: any; password: any }) => {
     try {
       const response = await postRequest({
         url: "/user/register",
-        body: payload,
+        body: {
+          email: payload.email,
+          password: payload.password,
+        },
       });
-
       return response;
     } catch (error) {
       return error.response;

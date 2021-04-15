@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { registerPayload } from "../../utils/interface";
 import { validateEmail, validatePassword } from "../../utils/function";
-import { UseAPI } from "../../../lib/api/user";
 import Swal from "sweetalert2";
+import { UseAPI } from "../../hooks/useAuth";
 
 export default function login() {
   const [emailValid, setEmailValid] = useState(true);
@@ -36,7 +36,7 @@ export default function login() {
   function handleLogin() {
     if (!handleFormValidation()) return;
     else {
-      UseAPI.login(loginPayload.email, loginPayload.password).then((res) => {
+      UseAPI.login(loginPayload).then((res) => {
         if (res.data.error) {
           // Swal.fire("Error", "Email already existed !", "error");
         } else Swal.fire(" Success", "Logged in Successfully", "success");

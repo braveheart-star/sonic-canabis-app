@@ -4,8 +4,8 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import { ToastContainer } from "react-toastify";
 import { NotifyStatus, registerPayload } from "../../utils/interface";
-import { UseAPI } from "../../../lib/api/user";
 import { validateEmail, notify, validatePassword } from "../../utils/function";
+import { UseAPI } from "../../hooks/useAuth";
 
 export default function register() {
   const [check1, setCheck1] = useState(false);
@@ -36,18 +36,16 @@ export default function register() {
   function handleRegister() {
     if (!handleFormValidation()) return;
     else {
-      UseAPI.register(registerPayload.email, registerPayload.password).then(
-        (res) => {
-          if (res.data.error) {
-            Swal.fire("Error", "Email already existed !", "error");
-          } else
-            Swal.fire(
-              " Success",
-              "Please check your email for validation",
-              "success"
-            );
-        }
-      );
+      UseAPI.register(registerPayload).then((res) => {
+        if (res.data.error) {
+          Swal.fire("Error", "Email already existed !", "error");
+        } else
+          Swal.fire(
+            " Success",
+            "Please check your email for validation",
+            "success"
+          );
+      });
     }
   }
 
