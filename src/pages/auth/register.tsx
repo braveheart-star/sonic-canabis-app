@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { registerPayload } from "../../utils/interface";
 import { UseAPI } from "../../../lib/api/user";
+import Swal from "sweetalert2";
 
 export default function register() {
   const [check1, setCheck1] = useState(false);
@@ -15,8 +16,17 @@ export default function register() {
     if (!(check1 && check2)) {
       return;
     }
-    console.log("login info ===>", loginInfo);
-    UseAPI.register(loginInfo.email, loginInfo.password);
+    UseAPI.register(loginInfo.email, loginInfo.password).then((res) => {
+      console.log("response for register ==>", res);
+      if (res.data.error) {
+        Swal.fire("error", `${res.data.error}`, "error");
+      } else
+        Swal.fire(
+          " Success",
+          "Please check your email for validation",
+          "success"
+        );
+    });
   }
 
   function handleOnSetValue(event: any) {
