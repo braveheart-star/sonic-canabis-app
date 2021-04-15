@@ -1,32 +1,54 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { registerPayload } from "../../utils/interface";
+import { NotifyStatus, registerPayload } from "../../utils/interface";
 import { UseAPI } from "../../../lib/api/user";
 import Swal from "sweetalert2";
+import { validateEmail, notify, validatePassword } from "../../utils/function";
+import { ToastContainer } from "react-toastify";
 
 export default function register() {
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
+  const [emailValid, setEmailValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState(true);
   const [loginInfo, setLoginPayload] = useState<registerPayload>({
     email: "",
     password: "",
   });
-  function handleRegister() {
+
+  function handleFormValidation() {
     if (!(check1 && check2)) {
-      return;
+      notify("Please check our requirements", NotifyStatus.error);
+      return false;
     }
-    UseAPI.register(loginInfo.email, loginInfo.password).then((res) => {
-      console.log("response for register ==>", res);
-      if (res.data.error) {
-        Swal.fire("error", `${res.data.error}`, "error");
-      } else
-        Swal.fire(
-          " Success",
-          "Please check your email for validation",
-          "success"
-        );
-    });
+    if (!validateEmail(loginInfo.email)) {
+      setEmailValid(false);
+      return false;
+    } else setEmailValid(true);
+    if (!validatePassword(loginInfo.password)) {
+      setPasswordValid(false);
+      return false;
+    } else setPasswordValid(true);
+
+    return true;
+  }
+
+  function handleRegister() {
+    if (!handleFormValidation()) return;
+    else {
+      UseAPI.register(loginInfo.email, loginInfo.password).then((res) => {
+        console.log("response for register ==>", res);
+        if (res.data.error) {
+          Swal.fire("Error", "Email already existed !", "error");
+        } else
+          Swal.fire(
+            " Success",
+            "Please check your email for validation",
+            "success"
+          );
+      });
+    }
   }
 
   function handleOnSetValue(event: any) {
@@ -63,20 +85,33 @@ export default function register() {
               </p>
 
               <div className="mt-8 space-y-4 ">
-                <input
-                  className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
-                  placeholder="Email"
-                  name="email"
-                  required
-                  onChange={handleOnSetValue}
-                />
-                <input
-                  className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
-                  placeholder="Password"
-                  name="password"
-                  required
-                  onChange={handleOnSetValue}
-                />
+                <div className="space-y-2 ">
+                  {!emailValid && (
+                    <label className="text-sm text-red-500 ">
+                      Email should be valid format !
+                    </label>
+                  )}
+                  <input
+                    className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
+                    placeholder="Email"
+                    name="email"
+                    onChange={handleOnSetValue}
+                  />
+                </div>
+                <div className="space-y-2 ">
+                  {!passwordValid && (
+                    <label className="text-sm text-red-500 ">
+                      Password should be minimum eight characters, at least one
+                      letter and one number !
+                    </label>
+                  )}
+                  <input
+                    className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
+                    placeholder="Password"
+                    name="password"
+                    onChange={handleOnSetValue}
+                  />
+                </div>
 
                 <div className="px-4 mt-4 text-gray-500">
                   <div className="flex items-baseline text-sm ">
@@ -102,9 +137,7 @@ export default function register() {
 
                 <button
                   onClick={handleRegister}
-                  type="submit"
-                  value="Register"
-                  className="w-full py-2 text-base font-bold text-white bg-green-500 rounded cursor-pointer"
+                  className="w-full py-2 text-base font-bold text-white bg-green-500 rounded"
                 >
                   Register
                 </button>
@@ -173,6 +206,15 @@ export default function register() {
           </div>
         </div>
       </div>
+
+      <ToastContainer
+        autoClose={3000}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        draggable={false}
+        pauseOnHover
+      />
     </div>
   );
 }
