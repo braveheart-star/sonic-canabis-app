@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Swal from "sweetalert2";
+import { ToastContainer } from "react-toastify";
 import { NotifyStatus, registerPayload } from "../../utils/interface";
 import { UseAPI } from "../../../lib/api/user";
-import Swal from "sweetalert2";
 import { validateEmail, notify, validatePassword } from "../../utils/function";
-import { ToastContainer } from "react-toastify";
 
 export default function register() {
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
-  const [loginInfo, setLoginPayload] = useState<registerPayload>({
+  const [registerPayload, setRegisterPayload] = useState<registerPayload>({
     email: "",
     password: "",
   });
@@ -22,38 +22,38 @@ export default function register() {
       notify("Please check our requirements", NotifyStatus.error);
       return false;
     }
-    if (!validateEmail(loginInfo.email)) {
+    if (!validateEmail(registerPayload.email)) {
       setEmailValid(false);
       return false;
     } else setEmailValid(true);
-    if (!validatePassword(loginInfo.password)) {
+    if (!validatePassword(registerPayload.password)) {
       setPasswordValid(false);
       return false;
     } else setPasswordValid(true);
-
     return true;
   }
 
   function handleRegister() {
     if (!handleFormValidation()) return;
     else {
-      UseAPI.register(loginInfo.email, loginInfo.password).then((res) => {
-        console.log("response for register ==>", res);
-        if (res.data.error) {
-          Swal.fire("Error", "Email already existed !", "error");
-        } else
-          Swal.fire(
-            " Success",
-            "Please check your email for validation",
-            "success"
-          );
-      });
+      UseAPI.register(registerPayload.email, registerPayload.password).then(
+        (res) => {
+          if (res.data.error) {
+            Swal.fire("Error", "Email already existed !", "error");
+          } else
+            Swal.fire(
+              " Success",
+              "Please check your email for validation",
+              "success"
+            );
+        }
+      );
     }
   }
 
   function handleOnSetValue(event: any) {
-    setLoginPayload({
-      ...loginInfo,
+    setRegisterPayload({
+      ...registerPayload,
       [event.target.name]: event.target.value.trim(),
     });
   }

@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { registerPayload } from "../../utils/interface";
+import { validateEmail, validatePassword } from "../../utils/function";
+import { UseAPI } from "../../../lib/api/user";
+import Swal from "sweetalert2";
 
 export default function login() {
+  const [emailValid, setEmailValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState(true);
+  const [loginPayload, setLoginPayload] = useState<registerPayload>({
+    email: "",
+    password: "",
+  });
+
+  function handleFormValidation() {
+    if (!validateEmail(loginPayload.email)) {
+      setEmailValid(false);
+      return false;
+    } else setEmailValid(true);
+    if (!validatePassword(loginPayload.password)) {
+      setPasswordValid(false);
+      return false;
+    } else setPasswordValid(true);
+    return true;
+  }
+
+  function handleOnSetValue(event: any) {
+    setLoginPayload({
+      ...loginPayload,
+      [event.target.name]: event.target.value.trim(),
+    });
+  }
+
+  function handleLogin() {
+    if (!handleFormValidation()) return;
+    else {
+      UseAPI.login(loginPayload.email, loginPayload.password).then((res) => {
+        if (res.data.error) {
+          // Swal.fire("Error", "Email already existed !", "error");
+        } else Swal.fire(" Success", "Logged in Successfully", "success");
+      });
+    }
+  }
+
   return (
     <div className="container flex min-h-screen p-4 m-auto ">
       <div className="w-full max-w-6xl m-auto border">
@@ -29,35 +70,48 @@ export default function login() {
                 </Link>
               </p>
 
-              <form
-                onSubmit={() => {
-                  console.log("hey");
-                }}
-                className="mt-8 space-y-4 "
-              >
-                <input
-                  className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
-                  placeholder="Email"
-                  required
-                />
-                <input
-                  className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
-                  placeholder="Password"
-                  required
-                />
+              <div className="mt-8 space-y-4 ">
+                <div className="space-y-2 ">
+                  {!emailValid && (
+                    <label className="text-sm text-red-500 ">
+                      Email should be valid format !
+                    </label>
+                  )}
+                  <input
+                    className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
+                    placeholder="Email"
+                    name="email"
+                    onChange={handleOnSetValue}
+                  />
+                </div>
+                <div className="space-y-2 ">
+                  {!passwordValid && (
+                    <label className="text-sm text-red-500 ">
+                      Password should be minimum eight characters, at least one
+                      letter and one number !
+                    </label>
+                  )}
+                  <input
+                    className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
+                    placeholder="Password"
+                    name="password"
+                    onChange={handleOnSetValue}
+                  />
+                </div>
 
-                <input
-                  type="submit"
-                  value="Log in"
+                <button
+                  onClick={handleLogin}
                   className="w-full py-2 text-base font-bold text-white bg-green-500 rounded cursor-pointer"
-                />
+                >
+                  Log in
+                </button>
 
                 <Link href="./recover">
                   <p className="text-right text-green-500 cursor-pointer hover:underline ">
                     Forgot your password?
                   </p>
                 </Link>
-              </form>
+              </div>
               <div className="mt-8 ">
                 <div className="relative border-b ">
                   <div className="absolute w-full -mt-3 text-center text-gray-400 ">
