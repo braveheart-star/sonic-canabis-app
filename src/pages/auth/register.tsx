@@ -1,10 +1,30 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { registerPayload } from "../../utils/interface";
+import { UseAPI } from "../../../lib/api/user";
 
 export default function register() {
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
+  const [loginInfo, setLoginPayload] = useState<registerPayload>({
+    email: "",
+    password: "",
+  });
+  function handleRegister() {
+    if (!(check1 && check2)) {
+      return;
+    }
+    console.log("login info ===>", loginInfo);
+    UseAPI.register(loginInfo.email, loginInfo.password);
+  }
+
+  function handleOnSetValue(event: any) {
+    setLoginPayload({
+      ...loginInfo,
+      [event.target.name]: event.target.value.trim(),
+    });
+  }
 
   return (
     <div className="container flex min-h-screen p-4 m-auto ">
@@ -32,21 +52,20 @@ export default function register() {
                 </Link>
               </p>
 
-              <form
-                onSubmit={() => {
-                  console.log("hey");
-                }}
-                className="mt-8 space-y-4 "
-              >
+              <div className="mt-8 space-y-4 ">
                 <input
                   className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
                   placeholder="Email"
+                  name="email"
                   required
+                  onChange={handleOnSetValue}
                 />
                 <input
                   className="block w-full p-2 px-4 text-sm border rounded lg:text-base focus:border-green-300 focus:outline-none"
                   placeholder="Password"
+                  name="password"
                   required
+                  onChange={handleOnSetValue}
                 />
 
                 <div className="px-4 mt-4 text-gray-500">
@@ -71,12 +90,15 @@ export default function register() {
                   </div>
                 </div>
 
-                <input
+                <button
+                  onClick={handleRegister}
                   type="submit"
                   value="Register"
                   className="w-full py-2 text-base font-bold text-white bg-green-500 rounded cursor-pointer"
-                />
-              </form>
+                >
+                  Register
+                </button>
+              </div>
               <div className="mt-8 ">
                 <div className="relative border-b ">
                   <div className="absolute w-full -mt-3 text-center text-gray-400 ">

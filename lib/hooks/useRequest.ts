@@ -1,6 +1,6 @@
 import useSwr from "swr";
 
-const baseUrl = "localhost:3000/api";
+const baseUrl = "localhost:4000/canabis/api";
 
 export const useRequest = (path: string, name: string) => {
   if (!path) {
