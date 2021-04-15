@@ -1,14 +1,12 @@
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { StoreProvider } from "easy-peasy";
 import { motion } from "framer-motion";
-import store from "../store";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <StoreProvider store={store}>
+    <div>
       <Head>
         <title>Canabis</title>
         <link rel="icon" href="/favicon.ico" />
@@ -22,6 +20,6 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           <Component {...pageProps} />
         </motion.main>
       </div>
-    </StoreProvider>
+    </div>
   );
 }
