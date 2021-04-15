@@ -6,7 +6,7 @@ export const UseAPI = {
     try {
       const response = await axios.post(
         `${SERVER_BASE_URL}/user/login`,
-        JSON.stringify({ user: { email, password } }),
+        JSON.stringify({ email, password }),
         {
           headers: {
             "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const UseAPI = {
     try {
       const response = await axios.post(
         `${SERVER_BASE_URL}/user`,
-        JSON.stringify({ user: { email, password } }),
+        JSON.stringify({ email, password }),
         {
           headers: {
             "Content-Type": "application/json",
