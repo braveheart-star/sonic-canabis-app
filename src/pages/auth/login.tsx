@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { registerPayload } from "../../utils/interface";
+import { registerPayload } from "../../utils/type";
 import { validateEmail, validatePassword } from "../../utils/function";
 import Swal from "sweetalert2";
 import { AuthAPI } from "../../requests/AuthAPI";

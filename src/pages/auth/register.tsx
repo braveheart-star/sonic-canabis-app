@@ -4,7 +4,7 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import { ToastContainer } from "react-toastify";
 
-import { NotifyStatus, registerPayload } from "../../utils/interface";
+import { NotifyStatus, registerPayload } from "../../utils/type";
 import { validateEmail, notify, validatePassword } from "../../utils/function";
 import { AuthAPI } from "../../requests/AuthAPI";
 
