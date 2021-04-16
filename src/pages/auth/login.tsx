@@ -48,6 +48,16 @@ export default function login() {
     }
   }
 
+  const responseGoogle = (response: any) => {
+    console.log(
+      "🚀 ~ file: login.tsx ~ line 54 ~ responseGoogle ~ response",
+      response
+    );
+    if (response.accessToken?.length > 0) {
+      setLoginPayload({ email: "", password: "" });
+    }
+  };
+
   return (
     <div className="container flex min-h-screen p-4 m-auto ">
       <div className="w-full max-w-6xl m-auto border">
@@ -177,6 +187,8 @@ export default function login() {
                     buttonText="Login"
                     cookiePolicy={"single_host_origin"}
                     autoLoad={false}
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
                   />
                 </div>
               </div>
