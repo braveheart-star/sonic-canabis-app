@@ -1,15 +1,10 @@
-import { useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import queryString from "query-string";
+import { getAccessToken } from "../lib/auth";
 
 export default function Home() {
-  const location = useRouter().asPath;
+  const data = getAccessToken();
+  console.log("🚀 ~ file: index.tsx ~ line 6 ~ Home ~ data", data);
 
-  useEffect(() => {
-    const parsedQuery = queryString.parse(location.substring(1)); // returns the query object
-    console.log("parsedQuery", parsedQuery);
-  });
   return (
     <div className="text-green-400 ">
       <Link href="/auth/login">
