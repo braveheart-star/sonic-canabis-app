@@ -2,7 +2,6 @@ import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { motion } from "framer-motion";
-import { SWRConfig } from "swr";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
