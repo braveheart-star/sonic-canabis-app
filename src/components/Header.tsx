@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 const providers = [
@@ -14,19 +14,40 @@ const providers = [
 ];
 
 export const Header = () => {
+  const [dropdown, setDropdown] = useState(false);
   return (
     <div className="bg-green-500 ">
       <div className="container p-4 mx-auto">
         <div className="grid space-y-3 text-sm lg:grid-flow-col lg:grid-cols-12 lg:grid-rows-2 lg:gap-2 xl:text-base">
           <div className="flex justify-between lg:hidden">
             <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                className="w-5 h-5 text-gray-100 fill-current "
-              >
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-              </svg>
+              {dropdown ? (
+                <button
+                  className="focus:outline-none"
+                  onClick={() => setDropdown(false)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    className="w-5 h-5 text-gray-100 fill-current "
+                  >
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+                  </svg>
+                </button>
+              ) : (
+                <button
+                  className=" focus:outline-none"
+                  onClick={() => setDropdown(true)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    className="w-5 h-5 text-gray-100 fill-current "
+                  >
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                  </svg>
+                </button>
+              )}
             </div>
             <div className="flex space-x-5">
               <svg
