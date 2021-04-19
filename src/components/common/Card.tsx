@@ -40,10 +40,10 @@ export const Card = () => {
           </svg>
         </div>
       </div>
-      <Carousel responsive={responsive} infinite={true}>
-        {[1, 2, 3, 4, 5, 6, 7].map((item, idx) => {
+      <Carousel responsive={responsive} arrows={false} infinite={true}>
+        {[1, 2, 3, 4, 5, 6, 7].map((item) => {
           return (
-            <div className="w-full p-2 mx-auto text-sm " key={idx}>
+            <div className="w-full p-2 mx-auto text-sm " key={item}>
               <div className="p-2 space-y-1 border rounded">
                 <img
                   className="w-full "

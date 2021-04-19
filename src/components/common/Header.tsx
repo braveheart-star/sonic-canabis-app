@@ -145,7 +145,7 @@ export const Header = () => {
       {dropdown && (
         <div
           onClick={() => setDropdown(false)}
-          className="fixed inset-0 bg-black bg-opacity-40"
+          className="fixed inset-0 z-20 bg-black bg-opacity-40"
         />
       )}
     </div>
