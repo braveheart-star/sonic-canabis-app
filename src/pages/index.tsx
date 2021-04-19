@@ -1,15 +1,20 @@
-import Link from "next/link";
 import { Layout } from "../components/common/Layout";
+import { Card } from "../components/common/Card";
 
 export default function Home() {
   return (
     <Layout>
-      <div className="container px-4 mx-auto ">
-        <Link href="/auth/login">
-          <button className="items-center px-2 py-1 mr-4 text-sm text-gray-300 underline ">
-            Home
-          </button>
-        </Link>
+      <div className="container p-2 mx-auto sm:py-4 sm:px-4 max-w-7xl">
+        <div className="w-full rounded-lg shadow ">
+          <img className="w-full h-24 sm:h-auto " src="/images/home/AD.png" />
+        </div>
+        <div className="mt-8 space-y-4">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </div>
     </Layout>
   );

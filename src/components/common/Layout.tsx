@@ -12,7 +12,7 @@ export const Layout = ({ children }: any) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div> {children}</div>
+          <div className="min-h-screen bg-gray-100 "> {children}</div>
           {/* <Footer /> */}
         </motion.main>
       </div>
