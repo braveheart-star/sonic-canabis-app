@@ -1,11 +1,7 @@
 import Link from "next/link";
-import { Layout } from "../components/Layout";
-import { getAccessToken } from "../lib/auth";
+import { Layout } from "../components/common/Layout";
 
 export default function Home() {
-  const data = getAccessToken();
-  console.log("🚀 ~ file: index.tsx ~ line 6 ~ Home ~ data", data);
-
   return (
     <Layout>
       <div className="text-green-400 ">
