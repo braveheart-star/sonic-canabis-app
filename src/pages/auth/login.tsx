@@ -63,16 +63,18 @@ export default function login() {
       <div className="w-full max-w-6xl m-auto border">
         <div className="grid lg:grid-cols-3">
           <div className="w-full p-2 lg:col-span-2 sm:p-4 ">
-            <div className="flex-shrink-0 w-20 h-20 mx-auto lg:w-24 lg:h-24">
-              <Image
-                src="/images/logo.svg"
-                alt="logo"
-                width={2000}
-                height={2000}
-              />
+            <div className="flex-shrink-0 w-20 h-20 mx-auto cursor-pointer lg:w-24 lg:h-24">
+              <Link href="/">
+                <Image
+                  src="/images/logo.svg"
+                  alt="logo"
+                  width={2000}
+                  height={2000}
+                />
+              </Link>
             </div>
-            <div className="w-full max-w-xl py-6 mx-auto lg:py-12">
-              <p className="text-3xl font-bold text-green-700 lg:text-4xl">
+            <div className="w-full max-w-xl py-4 mx-auto lg:py-12">
+              <p className="text-2xl font-bold text-green-700 sm:text-3xl lg:text-4xl">
                 Welcome Back!
               </p>
               <p className="mt-2 text-gray-400">

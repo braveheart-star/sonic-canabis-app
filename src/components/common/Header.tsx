@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { MobileDrop } from "./MobileDrop";
+import Link from "next/link";
 
 const providers = [
   "Dispensaries",
@@ -126,17 +127,30 @@ export const Header = () => {
                   >
                     <path d="M4 2h16l-3 9H4a1 1 0 1 0 0 2h13v2H4a3 3 0 0 1 0-6h.33L3 5 2 2H0V0h3a1 1 0 0 1 1 1v1zm1 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
                   </svg>
-                  <button className="font-bold text-gray-100 ">Log in</button>
-                  <button className="px-4 py-1 font-bold text-gray-100 bg-green-700 rounded-lg">
-                    Sign up
-                  </button>
+                  <Link href="/auth/login">
+                    <button className="px-4 py-1 font-bold text-gray-100 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
+                      Log in
+                    </button>
+                  </Link>
+                  <Link href="/auth/register">
+                    <button className="px-4 py-1 font-bold text-gray-100 bg-green-700 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
+                      Sign up
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
-          <div className="items-center hidden px-3 lg:flex lg:col-start-2 lg:col-end-13 lg:space-x-7 text-gray-50 ">
+          <div className="items-center px-3 py-2 space-x-5 overflow-x-scroll border-t lg:overflow-auto sm:space-x-4 whitespace-nowrap lg:flex lg:col-start-2 lg:col-end-13 lg:space-x-7 text-gray-50 ">
             {providers.map((item, idx) => {
-              return <span key={idx}>{item}</span>;
+              return (
+                <button
+                  className="font-semibold tracking-wide sm:tracking-normal"
+                  key={idx}
+                >
+                  {item}
+                </button>
+              );
             })}
           </div>
         </div>

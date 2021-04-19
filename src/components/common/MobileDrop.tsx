@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "../../styles/styles.module.scss";
 
 export const MobileDrop = (props: any) => {
@@ -11,12 +12,24 @@ export const MobileDrop = (props: any) => {
       }`}
     >
       <div className="max-h-screen overflow-y-scroll">
-        <div className="p-5 py-8 text-gray-700">
-          <div className="flex py-4 space-x-4 sm:space-x-8 ">
-            <button className="font-bold ">Log in</button>
-            <button className="px-4 py-1 font-bold text-white bg-green-500 rounded-lg sm:px-6 sm:py-2">
-              Sign up
-            </button>
+        <div className="p-5 text-gray-700">
+          <div className="flex-shrink-0 w-20 h-20 mx-auto ">
+            <Image
+              src="/images/logo.svg"
+              alt="logo"
+              width={2000}
+              height={2000}
+            />
+          </div>
+          <div className="flex py-4 space-x-6 sm:space-x-8 ">
+            <Link href="/auth/login">
+              <button className="font-bold ">Log in</button>
+            </Link>
+            <Link href="/auth/register">
+              <button className="px-4 py-1 font-bold text-white bg-green-500 rounded-lg sm:px-6 sm:py-2">
+                Sign up
+              </button>
+            </Link>
           </div>
           <div className="py-3 border-t">
             <Link href="/">
