@@ -18,7 +18,7 @@ export const Header = () => {
   const [dropdown, setDropdown] = useState(false);
   return (
     <div className="bg-green-500 ">
-      <div className="container p-4 mx-auto">
+      <div className="container p-4 mx-auto max-w-7xl">
         <div className="grid space-y-3 text-sm lg:grid-flow-col lg:grid-cols-12 lg:grid-rows-2 lg:gap-2 xl:text-base">
           <div className="flex justify-between lg:hidden">
             <button
@@ -71,9 +71,9 @@ export const Header = () => {
           </div>
           <div className="flex items-center lg:col-start-2 lg:col-end-13 ">
             <div className="w-full grid-cols-7 lg:grid gap-x-1">
-              <div className="col-span-5 px-2">
-                <div className="grid w-full grid-cols-7 px-2 py-1 bg-gray-100 rounded gap-x-1">
-                  <div className="flex items-center col-span-4 space-x-3 border-r border-green-500 ">
+              <div className="col-span-5 px-1">
+                <div className="grid w-full max-w-3xl grid-cols-7 px-2 py-2 bg-gray-100 rounded gap-x-1">
+                  <div className="flex items-center col-span-4 px-2 space-x-3 border-r border-green-500 ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
@@ -86,7 +86,7 @@ export const Header = () => {
                       className="w-full pr-2 text-green-500 placeholder-green-500 truncate bg-gray-100 focus:outline-none"
                     />
                   </div>
-                  <div className="flex items-center col-span-3 space-x-3 ">
+                  <div className="flex items-center col-span-3 px-2 space-x-3 ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"

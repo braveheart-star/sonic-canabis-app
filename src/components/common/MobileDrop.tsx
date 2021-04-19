@@ -6,7 +6,7 @@ export const MobileDrop = (props: any) => {
   const { dropdown } = props;
   return (
     <div
-      className={`fixed top-0 left-0 min-h-screen z-10 w-4/5 bg-white overflow-y-scroll lg:hidden ${
+      className={`fixed top-0 left-0 z-10 w-4/5 min-h-screen bg-white lg:hidden ${
         dropdown ? `${styles.mobileOpen}` : `${styles.mobileClose}`
       }`}
     >
