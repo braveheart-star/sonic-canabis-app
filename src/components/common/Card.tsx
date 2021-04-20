@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -45,11 +46,15 @@ export const Card = () => {
           return (
             <div className="w-full p-2 mx-auto text-sm " key={item}>
               <div className="p-2 space-y-1 border rounded">
-                <img
-                  className="w-full "
-                  src="/images/home/hot.png"
-                  alt="slide"
-                />
+                <div className="w-full ">
+                  <Image
+                    src="/images/home/hot.png"
+                    alt="slide"
+                    width="1200"
+                    height="800"
+                  />
+                </div>
+
                 <p className="text-green-700 ">Storewide</p>
                 <p className="font-semibold text-black ">
                   25% Off In-store on 1000+ Items
