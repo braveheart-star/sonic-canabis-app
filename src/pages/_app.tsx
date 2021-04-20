@@ -10,6 +10,10 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <Head>
         <title>Canabis</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
       </Head>
       <div className="relative flex flex-col w-full min-h-screen ">
         <motion.main
