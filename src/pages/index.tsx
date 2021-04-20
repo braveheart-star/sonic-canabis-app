@@ -8,7 +8,7 @@ export default function Home() {
         <div className="w-full rounded-lg shadow ">
           <img className="w-full h-24 sm:h-auto " src="/images/home/AD.png" />
         </div>
-        <div className="mt-8 space-y-4 lg:space-y-12">
+        <div className="mt-2 space-y-4 lg:mt-8 lg:space-y-12">
           <Card />
           <Card />
           <Card />
