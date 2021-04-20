@@ -4,6 +4,8 @@ import Image from "next/image";
 export const Footer = () => {
   return (
     <div className="bg-gray-100 ">
+      {" "}
+      test
       <div className="w-full h-10 bg-green-500 " />
       <div className="p-4 mx-auto max-w-7xl">
         <div className="flex-shrink-0 w-16 h-16 ">
