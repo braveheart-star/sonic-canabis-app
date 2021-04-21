@@ -1,10 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../../styles/styles.module.scss";
+import styles from "../styles/components.module.scss";
+import Maybe from "./common/Maybe";
 
 export const MobileDrop = (props: any) => {
   const { dropdown } = props;
+  const isLoggedIn = true;
+
   return (
     <div
       className={`fixed top-0 left-0 z-30 w-4/5 min-h-screen bg-white lg:hidden ${
@@ -21,16 +24,25 @@ export const MobileDrop = (props: any) => {
               height={2000}
             />
           </div>
-          <div className="flex py-4 space-x-6 sm:space-x-8 ">
-            <Link href="/auth/login">
-              <button className="font-bold ">Log in</button>
-            </Link>
-            <Link href="/auth/register">
-              <button className="px-4 py-1 font-bold text-white bg-green-500 rounded-lg sm:px-6 sm:py-2">
-                Sign up
+          <Maybe test={!isLoggedIn}>
+            <div className="flex py-4 space-x-6 sm:space-x-8 ">
+              <Link href="/auth/login">
+                <button className="font-bold ">Log in</button>
+              </Link>
+              <Link href="/auth/register">
+                <button className="px-4 py-1 font-bold text-white bg-green-500 rounded-lg sm:px-6 sm:py-2">
+                  Sign up
+                </button>
+              </Link>
+            </div>
+          </Maybe>
+          <Maybe test={isLoggedIn}>
+            <div className="py-4 ">
+              <button className="px-4 py-1 font-bold text-white bg-yellow-500 rounded-lg sm:px-6 sm:py-2">
+                Log out
               </button>
-            </Link>
-          </div>
+            </div>
+          </Maybe>
           <div className="py-3 border-t">
             <Link href="/">
               <p>Download the app</p>

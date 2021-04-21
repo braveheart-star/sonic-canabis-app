@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { MobileDrop } from "./MobileDrop";
+import { MobileDrop } from "../MobileDrop";
 import Link from "next/link";
 
 const providers = [
@@ -17,6 +17,7 @@ const providers = [
 
 export const Header = () => {
   const [dropdown, setDropdown] = useState(false);
+  const isLoggedIn = true;
   return (
     <div className="bg-green-500 ">
       <div className="container p-4 mx-auto max-w-7xl">
@@ -57,6 +58,14 @@ export const Header = () => {
                 className="w-5 h-5 text-gray-100 fill-current "
               >
                 <path d="M4 2h16l-3 9H4a1 1 0 1 0 0 2h13v2H4a3 3 0 0 1 0-6h.33L3 5 2 2H0V0h3a1 1 0 0 1 1 1v1zm1 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                className="w-5 h-5 text-gray-100 fill-current "
+              >
+                <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z" />
               </svg>
             </div>
           </div>
@@ -106,40 +115,63 @@ export const Header = () => {
                 </div>
               </div>
               <div className="items-center justify-end hidden w-full col-span-2 lg:flex ">
-                <div className="flex items-center space-x-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    className="w-5 h-5 text-gray-100 fill-current "
-                  >
-                    <path d="M4 8a6 6 0 0 1 4.03-5.67 2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2V8zm8 10a2 2 0 1 1-4 0h4z" />
-                  </svg>
+                <div className="flex items-center space-x-5">
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      className="w-5 h-5 text-gray-100 fill-current "
+                    >
+                      <path d="M4 8a6 6 0 0 1 4.03-5.67 2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2V8zm8 10a2 2 0 1 1-4 0h4z" />
+                    </svg>
+                  </button>
 
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    className="w-5 h-5 text-gray-100 fill-current "
-                  >
-                    <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
-                  </svg>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      className="w-5 h-5 text-gray-100 fill-current "
+                    >
+                      <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
+                    </svg>
+                  </button>
 
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    className="w-5 h-5 text-gray-100 fill-current "
-                  >
-                    <path d="M4 2h16l-3 9H4a1 1 0 1 0 0 2h13v2H4a3 3 0 0 1 0-6h.33L3 5 2 2H0V0h3a1 1 0 0 1 1 1v1zm1 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
-                  </svg>
-                  <Link href="/auth/login">
-                    <button className="px-4 py-1 font-bold text-gray-100 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
-                      Log in
-                    </button>
-                  </Link>
-                  <Link href="/auth/register">
-                    <button className="px-4 py-1 font-bold text-gray-100 bg-green-700 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
-                      Sign up
-                    </button>
-                  </Link>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      className="w-5 h-5 text-gray-100 fill-current "
+                    >
+                      <path d="M4 2h16l-3 9H4a1 1 0 1 0 0 2h13v2H4a3 3 0 0 1 0-6h.33L3 5 2 2H0V0h3a1 1 0 0 1 1 1v1zm1 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+                    </svg>
+                  </button>
+
+                  {isLoggedIn ? (
+                    <div className="flex items-center border">
+                      <button className="focus:outline-none">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          className="w-5 h-5 text-gray-100 fill-current "
+                        >
+                          <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z" />
+                        </svg>
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <Link href="/auth/login">
+                        <button className="px-4 py-1 font-bold text-gray-100 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
+                          Log in
+                        </button>
+                      </Link>
+                      <Link href="/auth/register">
+                        <button className="px-4 py-1 font-bold text-gray-100 bg-green-700 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
+                          Sign up
+                        </button>
+                      </Link>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
