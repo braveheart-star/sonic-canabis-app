@@ -23,9 +23,10 @@ export const Header = () => {
   const isLoggedIn = true;
 
   useEffect((): any => {
-    if (dropdown) document.body.style.overflow = "hidden";
-
-    return () => (document.body.style.overflow = "unset");
+    if (dropdown) {
+      document.body.style.position = "fixed";
+    } else document.body.style.position = "inherit";
+    return () => (document.body.style.position = "inherit");
   }, [dropdown]);
 
   return (
