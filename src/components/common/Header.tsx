@@ -61,13 +61,15 @@ export const Header = () => {
             </div>
           </div>
           <div className="hidden w-full col-span-1 row-span-2 mx-auto lg:flex ">
-            <div className="flex-shrink-0 w-20 h-20 mx-auto ">
-              <Image
-                src="/images/logo.svg"
-                alt="logo"
-                width={2000}
-                height={2000}
-              />
+            <div className="flex-shrink-0 w-20 h-20 mx-auto cursor-pointer ">
+              <Link href="/">
+                <Image
+                  src="/images/logo.svg"
+                  alt="logo"
+                  width={2000}
+                  height={2000}
+                />
+              </Link>
             </div>
           </div>
           <div className="flex items-center lg:col-start-2 lg:col-end-13 ">
@@ -144,12 +146,14 @@ export const Header = () => {
           <div className="items-center px-3 py-2 space-x-5 overflow-x-scroll border-t lg:overflow-auto sm:space-x-4 whitespace-nowrap lg:flex lg:col-start-2 lg:col-end-13 lg:space-x-7 text-gray-50 ">
             {providers.map((item, idx) => {
               return (
-                <button
-                  className="font-semibold tracking-wide sm:tracking-normal"
-                  key={idx}
-                >
-                  {item}
-                </button>
+                <Link href={`/${item.toLowerCase()}`}>
+                  <button
+                    className="font-semibold tracking-wide focus:outline-none sm:tracking-normal"
+                    key={idx}
+                  >
+                    {item}
+                  </button>
+                </Link>
               );
             })}
           </div>

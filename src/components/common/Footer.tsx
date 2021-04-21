@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const Footer = () => {
   return (
-    <div className="bg-gray-100 ">
+    <div className="py-4 bg-gray-100">
       <div className="w-full h-10 bg-green-500 " />
       <div className="p-4 mx-auto max-w-7xl">
         <div className="flex-shrink-0 w-16 h-16 ">
@@ -48,6 +48,9 @@ export const Footer = () => {
             </p>
           </button>
         </div>
+      </div>
+      <div className="absolute w-full text-sm text-center text-gray-500 lg:text-base bottom-2">
+        Copyright © 2021 CannabisMap.
       </div>
     </div>
   );
