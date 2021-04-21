@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Maybe } from "./common/Maybe";
 import styles from "../styles/components.module.scss";
-import Maybe from "./common/Maybe";
 
 export const MobileDrop = (props: any) => {
   const { dropdown } = props;
@@ -10,7 +10,7 @@ export const MobileDrop = (props: any) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 z-30 w-4/5 min-h-screen bg-white lg:hidden ${
+      className={`fixed top-0 left-0 z-20 w-4/5 min-h-screen bg-white lg:hidden ${
         dropdown ? `${styles.mobileOpen}` : `${styles.mobileClose}`
       }`}
     >
