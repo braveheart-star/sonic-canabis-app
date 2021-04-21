@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MobileDrop } from "../MobileDrop";
@@ -21,9 +21,13 @@ export const Header = () => {
   const [dropdown, setDropdown] = useState(false);
   const [accountDrop, setAccountDrop] = useState(false);
   const isLoggedIn = true;
-  if (dropdown) {
-    document.body.style.overflow = "hidden";
-  }
+
+  useEffect((): any => {
+    if (dropdown) document.body.style.overflow = "hidden";
+
+    return () => (document.body.style.overflow = "unset");
+  }, [dropdown]);
+
   return (
     <div className="bg-green-500 ">
       <div className="container p-4 mx-auto max-w-7xl">
