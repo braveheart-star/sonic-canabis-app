@@ -1,3 +1,9 @@
 import React from "react";
 
-export const Maybe = ({ test, children }: any) => <>{test && children}</>;
+interface MaybeProps {
+  condition: boolean;
+  children: any;
+}
+export const Maybe = ({ condition, children }: MaybeProps) => (
+  <>{condition && children}</>
+);

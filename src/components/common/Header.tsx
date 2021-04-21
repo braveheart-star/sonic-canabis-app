@@ -79,7 +79,7 @@ export const Header = () => {
                     <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z" />
                   </svg>
                 </button>
-                <Maybe test={accountDrop}>
+                <Maybe condition={accountDrop}>
                   <AccountDrop />
                 </Maybe>
               </div>
@@ -161,7 +161,7 @@ export const Header = () => {
                     </svg>
                   </button>
 
-                  <Maybe test={isLoggedIn}>
+                  <Maybe condition={isLoggedIn}>
                     <div className="relative flex items-center">
                       <button
                         onClick={() => setAccountDrop(true)}
@@ -175,12 +175,12 @@ export const Header = () => {
                           <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z" />
                         </svg>
                       </button>
-                      <Maybe test={accountDrop}>
+                      <Maybe condition={accountDrop}>
                         <AccountDrop />
                       </Maybe>
                     </div>
                   </Maybe>
-                  <Maybe test={!isLoggedIn}>
+                  <Maybe condition={!isLoggedIn}>
                     <Link href="/auth/login">
                       <button className="px-4 py-1 font-bold text-gray-100 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
                         Log in
@@ -211,13 +211,13 @@ export const Header = () => {
       </div>
 
       <MobileDrop dropdown={dropdown} />
-      <Maybe test={dropdown}>
+      <Maybe condition={dropdown}>
         <div
           onClick={() => setDropdown(false)}
           className="fixed inset-0 z-10 bg-black bg-opacity-40"
         />
       </Maybe>
-      <Maybe test={accountDrop}>
+      <Maybe condition={accountDrop}>
         <div
           onClick={() => setAccountDrop(false)}
           className="fixed inset-0 z-10 bg-black lg:bg-opacity-0 bg-opacity-5"

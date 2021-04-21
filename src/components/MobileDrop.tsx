@@ -24,7 +24,7 @@ export const MobileDrop = (props: any) => {
               height={2000}
             />
           </div>
-          <Maybe test={!isLoggedIn}>
+          <Maybe condition={!isLoggedIn}>
             <div className="flex py-4 space-x-6 sm:space-x-8 ">
               <Link href="/auth/login">
                 <button className="font-bold ">Log in</button>
@@ -36,7 +36,7 @@ export const MobileDrop = (props: any) => {
               </Link>
             </div>
           </Maybe>
-          <Maybe test={isLoggedIn}>
+          <Maybe condition={isLoggedIn}>
             <div className="py-4 ">
               <button className="px-4 py-1 font-bold text-white bg-yellow-500 rounded-lg sm:px-6 sm:py-2">
                 Log out
