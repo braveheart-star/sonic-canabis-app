@@ -61,17 +61,18 @@ export const Header = () => {
             </div>
           </div>
           <div className="hidden w-full col-span-1 row-span-2 mx-auto lg:flex ">
-            <div className="flex-shrink-0 w-20 h-20 mx-auto cursor-pointer ">
-              <Link href="/">
+            <Link href="/">
+              <div className="flex-shrink-0 w-20 h-20 mx-auto cursor-pointer ">
                 <Image
                   src="/images/logo.svg"
                   alt="logo"
                   width={2000}
                   height={2000}
                 />
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
+
           <div className="flex items-center lg:col-start-2 lg:col-end-13 ">
             <div className="w-full grid-cols-7 lg:grid gap-x-1">
               <div className="col-span-5 px-1">
@@ -147,10 +148,7 @@ export const Header = () => {
             {providers.map((item, idx) => {
               return (
                 <Link href={`/${item.toLowerCase()}`} key={idx}>
-                  <button
-                    className="font-semibold tracking-wide focus:outline-none sm:tracking-normal"
-                    key={idx}
-                  >
+                  <button className="font-semibold tracking-wide focus:outline-none sm:tracking-normal">
                     {item}
                   </button>
                 </Link>
@@ -159,6 +157,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
+
       <MobileDrop dropdown={dropdown} />
       {dropdown && (
         <div
