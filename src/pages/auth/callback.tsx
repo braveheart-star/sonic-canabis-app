@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import queryString from "query-string";
 import useSWR from "swr";
 import { SERVER_BASE_URL } from "../../utils/constant";
-import { setAccessToken } from "../../lib/auth";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 export default function callback() {
@@ -21,7 +20,7 @@ export default function callback() {
 
   useEffect(() => {
     if (data) {
-      setAccessToken(data.access_token);
+      // setAccessToken(data.access_token);
       router.push("/");
     }
   }, [data]);

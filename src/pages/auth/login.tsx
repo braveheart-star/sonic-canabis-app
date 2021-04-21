@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import { GoogleLogin } from "react-google-login";
 import { registerPayload } from "../../utils/type";
 import { validateEmail, validatePassword } from "../../utils/function";
-import { AuthAPI } from "../../requests/AuthAPI";
-import { setAccessToken } from "../../lib/auth";
 
 export default function login() {
   const [emailValid, setEmailValid] = useState(true);
@@ -37,15 +35,15 @@ export default function login() {
 
   function handleLogin() {
     if (!handleFormValidation()) return;
-    else {
-      AuthAPI.login(loginPayload).then((res) => {
-        console.log("response from login ==>", res.data);
-        setAccessToken(res.data.access_token);
-        if (res.data.error) {
-          Swal.fire("Error", "Email already existed !", "error");
-        } else Swal.fire(" Success", "Logged in Successfully", "success");
-      });
-    }
+    // else {
+    //   AuthAPI.login(loginPayload).then((res) => {
+    //     console.log("response from login ==>", res.data);
+    //     // setAccessToken(res.data.access_token);
+    //     if (res.data.error) {
+    //       Swal.fire("Error", "Email already existed !", "error");
+    //     } else Swal.fire(" Success", "Logged in Successfully", "success");
+    //   });
+    // }
   }
 
   const responseGoogle = (response: any) => {
