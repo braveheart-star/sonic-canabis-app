@@ -21,6 +21,9 @@ export const Header = () => {
   const [dropdown, setDropdown] = useState(false);
   const [accountDrop, setAccountDrop] = useState(false);
   const isLoggedIn = true;
+  if (dropdown) {
+    document.body.style.overflow = "hidden";
+  }
   return (
     <div className="bg-green-500 ">
       <div className="container p-4 mx-auto max-w-7xl">
