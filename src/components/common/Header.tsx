@@ -146,7 +146,7 @@ export const Header = () => {
           <div className="items-center px-3 py-2 space-x-5 overflow-x-scroll border-t lg:overflow-auto sm:space-x-4 whitespace-nowrap lg:flex lg:col-start-2 lg:col-end-13 lg:space-x-7 text-gray-50 ">
             {providers.map((item, idx) => {
               return (
-                <Link href={`/${item.toLowerCase()}`}>
+                <Link href={`/${item.toLowerCase()}`} key={idx}>
                   <button
                     className="font-semibold tracking-wide focus:outline-none sm:tracking-normal"
                     key={idx}
