@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export const AccountDrop = () => {
@@ -27,6 +28,11 @@ export const AccountDrop = () => {
           <p className="p-2 rounded cursor-pointer hover:bg-gray-100">
             Recently viewed
           </p>
+          <Link href="/products/mystore">
+            <p className="p-2 rounded cursor-pointer hover:bg-gray-100">
+              My products
+            </p>
+          </Link>
         </div>
         <div className="p-2 ">
           <p className="p-2 rounded cursor-pointer hover:bg-gray-100">
