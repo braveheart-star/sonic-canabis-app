@@ -7,14 +7,14 @@ export default function delivery() {
     <Layout>
       <div className="w-full space-y-2">
         <div className="p-3 bg-green-50">
-          <div className="w-full max-w-lg mx-auto space-x-4 ">
-            <div className="grid grid-cols-2 text-center text-green-600">
+          <div className="w-full max-w-2xl mx-auto space-x-4 text-sm lg:text-base">
+            <div className="grid grid-cols-2 text-center text-green-500">
               <button
                 onClick={() => {
                   setActiveItem(0);
                 }}
                 className={`py-2 rounded focus:outline-none ${
-                  activeItem === 0 ? "bg-green-100" : ""
+                  activeItem === 0 ? "bg-green-100 text-green-700" : ""
                 }`}
               >
                 Delivery
@@ -24,7 +24,7 @@ export default function delivery() {
                   setActiveItem(1);
                 }}
                 className={`py-2 rounded focus:outline-none ${
-                  activeItem === 1 ? "bg-green-100" : ""
+                  activeItem === 1 ? "bg-green-100 text-green-700" : ""
                 }`}
               >
                 Pick Up
@@ -32,8 +32,8 @@ export default function delivery() {
             </div>
           </div>
         </div>
-        <div className="w-full p-2 mx-auto space-y-8 bg-white  sm:p-4 max-w-7xl">
-          ere
+        <div className="container w-full p-1 mx-auto sm:p-4 max-w-7xl">
+          <div className="p-2 bg-white rounded shadow">er</div>
         </div>
       </div>
     </Layout>

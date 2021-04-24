@@ -5,7 +5,7 @@ export default function mystore() {
   return (
     <div>
       <ProductHeader />
-      <div className="p-4 mx-auto mt-8 text-gray-600 border max-w-7xl">
+      <div className="container p-4 mx-auto mt-8 text-gray-600 border  max-w-7xl">
         <div className="flex items-center justify-between pb-2 border-b">
           <p className="text-2xl font-bold ">My Products</p>
           <button className="flex items-center p-2 px-4 space-x-1 text-white rounded-lg bg-emerald-500">

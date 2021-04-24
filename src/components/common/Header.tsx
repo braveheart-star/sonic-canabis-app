@@ -31,7 +31,7 @@ export const Header = () => {
 
   return (
     <div className="bg-green-500 ">
-      <div className="p-4 mx-auto  lg:p-2 max-w-7xl">
+      <div className="container p-4 mx-auto lg:p-2 max-w-7xl">
         <div className="grid space-y-4 text-sm lg:grid-flow-col lg:grid-cols-12 lg:grid-rows-2 lg:gap-2 xl:text-base">
           <div className="flex justify-between lg:hidden">
             <button
