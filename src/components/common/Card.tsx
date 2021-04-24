@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 4,
     centerMode: true,
     paritialVisibilityGutter: 40,
   },
@@ -18,7 +18,7 @@ const responsive = {
 
   mobile: {
     breakpoint: { max: 640, min: 300 },
-    items: 2,
+    items: 1,
     partialVisibilityGutter: 10,
   },
 };
@@ -46,12 +46,13 @@ export const Card = () => {
           return (
             <div className="w-full p-2 mx-auto text-sm " key={item}>
               <div className="p-2 space-y-1 border rounded">
-                <div className="w-full ">
+                <div className="w-full p-4 sm:p-2">
                   <Image
                     src="/images/home/hot.png"
                     alt="slide"
                     width="1200"
                     height="800"
+                    draggable="false"
                   />
                 </div>
 

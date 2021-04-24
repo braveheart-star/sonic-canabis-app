@@ -59,7 +59,7 @@ export default function Home() {
           <p className="p-4 text-lg font-bold tracking-wider">
             Dispensary Regions
           </p>
-          <div className="grid grid-cols-2 p-4 text-sm text-gray-500 lg:text-base sm:grid-cols-3 lg:space-y-2 lg:grid-cols-5">
+          <div className="grid grid-cols-2 px-4 text-sm text-gray-500 lg:text-base sm:grid-cols-3 lg:space-y-2 lg:grid-cols-5">
             {regions.map((item, idx) => {
               return (
                 <div key={idx} className="space-y-2 ">
