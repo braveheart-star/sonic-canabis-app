@@ -1,13 +1,13 @@
-import Link from "next/link";
 import Image from "next/image";
 
 import { Layout } from "../components/common/Layout";
 import { Card } from "../components/common/Card";
+import { regions } from "../utils/data";
 
 export default function Home() {
   return (
     <Layout>
-      <div className="container p-2 mx-auto space-y-6 sm:py-4 sm:px-4 max-w-7xl">
+      <div className="container p-2 mx-auto space-y-8 sm:py-4 sm:px-4 max-w-7xl">
         <div className="relative w-full mt-4 lg:mt-8">
           <div className="relative hidden w-full h-56 rounded shadow lg:flex">
             <Image
@@ -18,7 +18,6 @@ export default function Home() {
               className="rounded " // just an example
             />
           </div>
-
           <div className="justify-around space-x-2 sm:flex">
             <div className="relative w-full h-32 rounded-lg shadow lg:hidden sm:w-80 sm:h-44">
               <Image
@@ -39,7 +38,6 @@ export default function Home() {
               />
             </div>
           </div>
-
           <div className="absolute inset-0 hidden lg:block ">
             <div className="flex h-full ">
               <div className="m-auto ">
@@ -50,22 +48,26 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex space-x-3 text-sm">
-          <Link href="/products/create">
-            <button className="p-2 px-4 text-white bg-green-500 rounded-md shadow ">
-              Start Selling
-            </button>
-          </Link>
-          <button className="p-2 px-4 text-green-600 border border-green-500 rounded-md shadow bg-lime-50 ">
-            Browse Products
-          </button>
+        <div className="space-y-4 lg:space-y-8 ">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
-        <div className="space-y-4 lg:space-y-12">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+        <div className="w-full p-2 text-gray-700 bg-white rounded-md shadow sm:px-8 sm:p-4">
+          <p className="p-4 text-lg font-bold tracking-wider">
+            Dispensary Regions
+          </p>
+          <div className="grid grid-cols-2 p-4 text-sm text-gray-500 lg:text-base sm:grid-cols-3 lg:space-y-2 lg:grid-cols-5">
+            {regions.map((item, idx) => {
+              return (
+                <div key={idx} className="space-y-2 ">
+                  {item}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </Layout>
