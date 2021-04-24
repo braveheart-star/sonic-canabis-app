@@ -1,6 +1,10 @@
 import React from "react";
-import { Layout } from "../../components/common/Layout";
+import { ProductHeader } from "../../components/products/ProductHeader";
 
 export default function create() {
-  return <Layout></Layout>;
+  return (
+    <div>
+      <ProductHeader></ProductHeader>
+    </div>
+  );
 }
