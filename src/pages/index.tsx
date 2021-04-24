@@ -7,7 +7,7 @@ import { regions } from "../utils/data";
 export default function Home() {
   return (
     <Layout>
-      <div className="container px-2 mx-auto space-y-8 sm:px-4 max-w-7xl">
+      <div className="px-2 mx-auto space-y-8  sm:px-4 max-w-7xl">
         <div className="relative w-full mt-4 ">
           <div className="relative hidden w-full h-56 rounded shadow lg:flex">
             <Image
