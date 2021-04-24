@@ -13,7 +13,9 @@ export const Layout = ({ children }: any) => {
           exit={{ opacity: 0 }}
         >
           <Header />
-          <div className="min-h-screen bg-gray-100 "> {children}</div>
+          <div className="flex min-h-screen py-4 bg-gray-100 lg:py-8 ">
+            {children}
+          </div>
           <Footer />
         </motion.main>
       </div>
