@@ -68,7 +68,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 640 },
-    items: 3,
+    items: 2,
     partialVisibilityGutter: 30,
   },
 
@@ -81,6 +81,25 @@ const responsive = {
 
 export default function delivery() {
   const [activeItem, setActiveItem] = useState(0);
+
+  const filterOptions = [
+    "Order online",
+    "Open now",
+    "Medical only",
+    "Recreational only",
+  ];
+
+  const [clickedFilters, setFilterOptions] = useState<string[]>([]);
+
+  function handleClickFilter(option: string) {
+    if (clickedFilters.includes(option)) {
+      clickedFilters.splice(clickedFilters.indexOf(option), 1);
+      setFilterOptions([...clickedFilters]);
+    } else {
+      setFilterOptions([...clickedFilters, option]);
+    }
+  }
+
   return (
     <Layout>
       <div className="w-full space-y-4">
@@ -89,6 +108,26 @@ export default function delivery() {
             <div className="grid grid-cols-2 text-center text-green-500">
               <button
                 onClick={() => {
+                  console.log(
+                    "🚀 ~ file: index.tsx ~ line 109 ~ handleClickFilter ~ clickedFilters",
+                    clickedFilters
+                  );
+                  console.log(
+                    "🚀 ~ file: index.tsx ~ line 109 ~ handleClickFilter ~ clickedFilters",
+                    clickedFilters
+                  );
+                  console.log(
+                    "🚀 ~ file: index.tsx ~ line 109 ~ handleClickFilter ~ clickedFilters",
+                    clickedFilters
+                  );
+                  console.log(
+                    "🚀 ~ file: index.tsx ~ line 109 ~ handleClickFilter ~ clickedFilters",
+                    clickedFilters
+                  );
+                  console.log(
+                    "🚀 ~ file: index.tsx ~ line 109 ~ handleClickFilter ~ clickedFilters",
+                    clickedFilters
+                  );
                   setActiveItem(0);
                 }}
                 className={`py-2  rounded-lg focus:outline-none ${
@@ -134,87 +173,82 @@ export default function delivery() {
           </div>
           <div className="p-4 mt-4 space-y-4 bg-white rounded shadow">
             <div className="flex items-center space-x-2 overflow-x-scroll text-sm sm:overflow-auto whitespace-nowrap">
-              <button className="p-2 px-4 border rounded-xl ">
-                Order online
-              </button>
-              <button className="p-2 px-4 border rounded-xl ">Open now</button>
-              <button className="p-2 px-4 border rounded-xl ">
-                Medical only
-              </button>
-              <button className="p-2 px-4 border rounded-xl ">
-                Recreational only
-              </button>
-            </div>
-            <div className="">
-              {/* <p className="text-lg font-bold tracking-wider lg:text-xl">
-                Featured
-              </p> */}
-              <div className="items-center justify-between ">
-                <p className="p-3 text-lg font-bold tracking-wider">
-                  Featured Brands
-                </p>
-                <div>
-                  <Carousel
-                    responsive={responsive}
-                    arrows={false}
-                    infinite={true}
+              {filterOptions.map((item: string, idx: number) => {
+                return (
+                  <button
+                    onClick={() => handleClickFilter(item)}
+                    key={idx}
+                    className={`p-2 px-4 rounded-xl ${
+                      clickedFilters.includes(item)
+                        ? "bg-green-400 text-white font-bold"
+                        : "border"
+                    }`}
                   >
-                    {mockData.map((item, idx) => {
-                      return (
-                        <div className="w-full p-2 mx-auto text-sm " key={idx}>
-                          <div className="p-4 space-y-1 border rounded">
-                            <div className="w-full">
-                              <Image
-                                src={item.img}
-                                alt="slide"
-                                width="1000"
-                                height="800"
-                                draggable="false"
-                              />
-                            </div>
+                    <p>{item}</p>
+                  </button>
+                );
+              })}
+            </div>
 
-                            <p className="text-base font-bold text-gray-700 ">
-                              {item.title}
-                            </p>
-                            <div className="flex space-x-1 ">
-                              {[
-                                ...Array(Math.floor(Number(item.rate))).keys(),
-                              ].map((item) => {
-                                return (
-                                  <FullStarIcon
-                                    key={item}
-                                    className="w-4 h-4 text-yellow-400 fill-current "
-                                  />
-                                );
-                              })}
-                              {Number(item.rate) -
-                                Math.floor(Number(item.rate)) >
-                              0.5 ? (
-                                Number(item.rate) -
-                                  Math.floor(Number(item.rate)) >
-                                0.8 ? (
-                                  <FullStarIcon
-                                    key={item}
-                                    className="w-4 h-4 text-yellow-400 fill-current "
-                                  />
-                                ) : (
-                                  <HalfStarIcon className="w-4 h-4 text-yellow-400 fill-current " />
-                                )
-                              ) : (
-                                <EmptyStarIcon className="w-4 h-4 text-yellow-400 fill-current " />
-                              )}
-                            </div>
-                          </div>
+            <div className="items-center justify-between ">
+              <p className="p-3 text-lg font-bold tracking-wider">
+                Featured Brands
+              </p>
+              <Carousel responsive={responsive} arrows={false} infinite={true}>
+                {mockData.map((item, idx) => {
+                  return (
+                    <div className="w-full p-2 mx-auto text-sm " key={idx}>
+                      <div className="p-4 space-y-1 border rounded">
+                        <div className="w-full">
+                          <Image
+                            src={item.img}
+                            alt="slide"
+                            width="1000"
+                            height="800"
+                            draggable="false"
+                          />
                         </div>
-                      );
-                    })}
-                  </Carousel>
-                </div>
-              </div>
+                        <p className="text-base font-bold text-gray-700 ">
+                          {item.title}
+                        </p>
+                        <div className="flex items-center space-x-2 text-gray-600 ">
+                          {renderStar(item.rate)}
+                          <p>{item.rate}</p>
+                          <p>({item.count})</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </Carousel>
             </div>
           </div>
         </div>
       </div>
     </Layout>
+  );
+}
+
+function renderStar(rate: string) {
+  return (
+    <div className="flex space-x-1 ">
+      {[...Array(Math.floor(Number(rate))).keys()].map((item) => {
+        return (
+          <FullStarIcon
+            key={item}
+            className="w-4 h-4 text-yellow-400 fill-current "
+          />
+        );
+      })}
+      {Number(rate) - Math.floor(Number(rate)) > 0.5 ? (
+        Number(rate) - Math.floor(Number(rate)) > 0.8 ? (
+          <FullStarIcon className="w-4 h-4 text-yellow-400 fill-current " />
+        ) : (
+          <HalfStarIcon className="w-4 h-4 text-yellow-400 fill-current " />
+        )
+      ) : (
+        <EmptyStarIcon className="w-4 h-4 text-yellow-400 fill-current " />
+      )}
+    </div>
   );
 }
