@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MobileDrop } from "../MobileDrop";
+import useSWR from "swr";
+
 import { Maybe } from "./Maybe";
+import { MobileDrop } from "../MobileDrop";
 import { AccountDrop } from "../AccountDrop";
+import storage from "../../utils/storage";
+import checkLogin from "../../utils/checkLogin";
 
 const providers = [
   "Dispensaries",
@@ -18,9 +22,15 @@ const providers = [
 ];
 
 export const Header = () => {
+  const { data: currentUser } = useSWR("user", storage);
+  console.log(
+    "🚀 ~ file: Header.tsx ~ line 26 ~ Header ~ currentUser",
+    currentUser
+  );
+  const isLoggedIn = checkLogin(currentUser);
+
   const [dropdown, setDropdown] = useState(false);
   const [accountDrop, setAccountDrop] = useState(false);
-  const isLoggedIn = true;
 
   useEffect((): any => {
     if (dropdown) {
@@ -77,20 +87,22 @@ export const Header = () => {
                 </svg>
               </button>
 
-              <div className="relative flex items-center">
-                <button onClick={() => setAccountDrop(true)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    className="w-5 h-5 text-gray-100 fill-current "
-                  >
-                    <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z" />
-                  </svg>
-                </button>
-                <Maybe condition={accountDrop}>
-                  <AccountDrop />
-                </Maybe>
-              </div>
+              {isLoggedIn && (
+                <div className="relative flex items-center">
+                  <button onClick={() => setAccountDrop(true)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      className="w-5 h-5 text-gray-100 fill-current "
+                    >
+                      <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z" />
+                    </svg>
+                  </button>
+                  <Maybe condition={accountDrop}>
+                    <AccountDrop />
+                  </Maybe>
+                </div>
+              )}
             </div>
           </div>
           <div className="hidden w-full col-span-1 row-span-2 mx-auto lg:flex ">
@@ -190,12 +202,12 @@ export const Header = () => {
                   </Maybe>
                   <Maybe condition={!isLoggedIn}>
                     <Link href="/auth/login">
-                      <button className="px-4 py-1 font-bold text-gray-100 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
+                      <button className="px-4 py-2 font-bold text-gray-100 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
                         Log in
                       </button>
                     </Link>
                     <Link href="/auth/register">
-                      <button className="px-4 py-1 font-bold text-gray-100 bg-green-700 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
+                      <button className="px-4 py-2 font-bold text-gray-100 bg-green-700 rounded-lg focus:ring-1 focus:outline-none ring-green-600">
                         Sign up
                       </button>
                     </Link>

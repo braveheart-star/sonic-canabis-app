@@ -1,12 +1,17 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import useSWR from "swr";
+
 import { Maybe } from "./common/Maybe";
+import storage from "../utils/storage";
+import checkLogin from "../utils/checkLogin";
 import styles from "../styles/components.module.scss";
 
 export const MobileDrop = (props: any) => {
   const { dropdown } = props;
-  const isLoggedIn = true;
+  const { data: currentUser } = useSWR("user", storage);
+  const isLoggedIn = checkLogin(currentUser);
 
   return (
     <div
@@ -32,7 +37,7 @@ export const MobileDrop = (props: any) => {
                 <button className="font-bold ">Log in</button>
               </Link>
               <Link href="/auth/register">
-                <button className="px-4 py-1 font-bold text-white bg-green-500 rounded-lg sm:px-6 sm:py-2">
+                <button className="px-4 py-2 font-bold text-white bg-green-500 rounded-lg sm:px-6 sm:py-2">
                   Sign up
                 </button>
               </Link>
