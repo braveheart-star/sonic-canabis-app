@@ -332,7 +332,9 @@ export default function delivery() {
                   onClick={() => setDropdown(true)}
                   className="flex items-center space-x-2 cursor-pointer"
                 >
-                  <p className="font-bold text-teal-500">Recommended</p>
+                  <p className="font-bold text-teal-500">
+                    {clickedSort ? clickedSort : "Recommended"}
+                  </p>
 
                   {!recommendDrop ? (
                     <svg
