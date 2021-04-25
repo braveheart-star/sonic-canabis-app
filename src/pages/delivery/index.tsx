@@ -6,55 +6,100 @@ import { Layout } from "../../components/common/Layout";
 import { FullStarIcon } from "../../components/icons/FullStarIcon";
 import { HalfStarIcon } from "../../components/icons/HalfStarIcon";
 import { EmptyStarIcon } from "../../components/icons/EmptyStarIcon";
+import { ConcentrateIcon } from "../../components/icons/delivery/ConcentrateIcon";
+import { EdibleIcon } from "../../components/icons/delivery/EdibleIcon";
+import { FlowerIcon } from "../../components/icons/delivery/FlowerIcon";
+import { VapePenIcon } from "../../components/icons/delivery/VapePenIcon";
+import { OtherIcon } from "../../components/icons/delivery/OtherIcon";
 
 const mockData = [
   {
     title: "KUSHAGRAM",
     rate: "4",
-    count: "320",
+    member: "320",
+    count: "270",
     usage: "Medical & Recreational",
     price: "$50 minimum",
     availableOrder: false,
+    deliveryTime: "60-90min",
+    deliveryFee: "",
+    concentrateNumber: "123",
+    edibleNumber: "323",
+    flowerNumber: "212",
+    vapeNumber: "115",
+    otherNumber: "121",
     img: "/images/brands/1.png",
   },
 
   {
     title: "Amuse Canabis Delivery",
     rate: "4.6",
-    count: "235",
+    member: "235",
+    count: "250",
     usage: "Medical & Recreational",
     price: "$50 minimum",
     availableOrder: true,
+    deliveryTime: "20-30min",
+    deliveryFee: "5$",
+    concentrateNumber: "167",
+    edibleNumber: "124",
+    flowerNumber: "213",
+    vapeNumber: "215",
+    otherNumber: "332",
     img: "/images/brands/2.png",
   },
 
   {
     title: "PAC LA - Downtown LA",
     rate: "4.7",
-    count: "567",
+    member: "567",
+    count: "643",
     usage: "Medical & Recreational",
     price: "$5 fee, $50 minimum",
     availableOrder: true,
+    deliveryTime: "20-30min",
+    deliveryFee: "5$",
+    concentrateNumber: "417",
+    edibleNumber: "211",
+    flowerNumber: "442",
+    vapeNumber: "421",
+    otherNumber: "321",
     img: "/images/brands/3.png",
   },
 
   {
     title: "HERB",
     rate: "4.9",
-    count: "640",
+    member: "640",
+    count: "143",
     usage: "Medical & Recreational",
     price: "$50 minimum",
     availableOrder: false,
+    deliveryTime: "20-30min",
+    deliveryFee: "5$",
+    concentrateNumber: "147",
+    edibleNumber: "226",
+    flowerNumber: "534",
+    vapeNumber: "11",
+    otherNumber: "21",
     img: "/images/brands/4.png",
   },
 
   {
     title: "BLAZE",
     rate: "4.6",
-    count: "364",
+    member: "364",
+    count: "213",
     usage: "Medical & Recreational",
     price: "",
     availableOrder: false,
+    deliveryTime: "20-30min",
+    deliveryFee: "",
+    concentrateNumber: "237",
+    edibleNumber: "111",
+    flowerNumber: "42",
+    vapeNumber: "155",
+    otherNumber: "671",
     img: "/images/brands/5.png",
   },
 ];
@@ -176,7 +221,7 @@ export default function delivery() {
             );
           })}
         </div>
-        <div className="p-3 space-y-4">
+        <div className="space-y-4 sm:p-3">
           <p className="text-lg font-bold tracking-wider ">Featured Brands</p>
           <Carousel responsive={responsive} arrows={false} infinite={true}>
             {mockData.map((item, idx) => {
@@ -198,7 +243,7 @@ export default function delivery() {
                     <div className="flex items-center space-x-2 text-gray-600 ">
                       {renderStar(item.rate)}
                       <p>{item.rate}</p>
-                      <p>({item.count})</p>
+                      <p>({item.member})</p>
                     </div>
                     <p>{item.usage}</p>
                     <p>{item.price}</p>
@@ -269,6 +314,147 @@ export default function delivery() {
                   />
                 )}
               </div>
+            </div>
+            <div className="mt-4 space-y-4 divide-y ">
+              {mockData.map((item, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    className="grid-cols-1 lg:grid lg:grid-cols-4 "
+                  >
+                    <div className="p-2 lg:p-4 lg:col-span-1 ">
+                      <div className="flex items-center space-x-4 ">
+                        <div className="relative flex-shrink-0 w-12 h-12 rounded ">
+                          <Image
+                            src={item.img}
+                            alt="Picture of the author"
+                            layout="fill" // required
+                            objectFit="cover" // change to suit your needs
+                            className="" // just an example
+                          />
+                        </div>
+                        <div>
+                          <p className="font-bold truncate ">{item.title}</p>
+                          <p className="text-sm text-gray-500 truncate ">
+                            {item.deliveryTime}
+                          </p>
+                          <p className="text-sm text-gray-500 truncate ">
+                            {item.usage}
+                          </p>
+                          <div className="flex items-center space-x-2">
+                            {!!item.deliveryFee ? (
+                              <p className="text-sm text-gray-500 truncate ">
+                                {item.deliveryFee} fee
+                              </p>
+                            ) : (
+                              <p className="text-sm font-semibold text-teal-500">
+                                Free delivery
+                              </p>
+                            )}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              className="flex-shrink-0 w-1 h-1 text-gray-500 fill-current "
+                            >
+                              <circle cx="12" cy="12" r="12" />
+                            </svg>
+                            <p className="text-sm text-gray-600 ">
+                              {item.price}
+                            </p>
+                          </div>
+                          <div className="flex items-center space-x-2 text-sm">
+                            <FullStarIcon className="w-3 h-3 text-yellow-400 fill-current " />
+                            <span className="text-sm ">{item.rate}</span>
+                            <span className="text-gray-500 ">
+                              ({item.member})
+                            </span>
+                          </div>
+                          {item.availableOrder && (
+                            <span className="p-1 text-sm font-semibold bg-gray-100 rounded">
+                              Order online
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-2 lg:p-4 lg:col-span-2 ">
+                      <div className="flex space-x-2">
+                        <p className="font-bold text-gray-700">
+                          Menu breakdown
+                        </p>
+
+                        <span className="text-sm text-gray-500 truncate">
+                          ({item.count} items)
+                        </span>
+                      </div>
+                      <div className="grid items-center grid-cols-5 mt-4 text-xs text-center gap-x-1">
+                        <div className="">
+                          <ConcentrateIcon className="w-8 h-8 mx-auto" />
+                          <p className="mt-2 text-gray-600 truncate ">
+                            Concentrates
+                          </p>
+                          <p className="text-sm text-gray-500 truncate ">
+                            ( {item.concentrateNumber} items)
+                          </p>
+                        </div>
+
+                        <div className="">
+                          <EdibleIcon className="w-8 h-8 mx-auto" />
+                          <p className="mt-2 text-gray-600 truncate">Edibles</p>
+                          <p className="text-sm text-gray-500 truncate">
+                            ( {item.edibleNumber} items)
+                          </p>
+                        </div>
+
+                        <div className="">
+                          <FlowerIcon className="w-8 h-8 mx-auto" />
+                          <p className="mt-2 text-gray-600 truncate">Flower</p>
+                          <p className="text-sm text-gray-500 truncate">
+                            ( {item.flowerNumber} items)
+                          </p>
+                        </div>
+
+                        <div className="">
+                          <VapePenIcon className="w-8 h-8 mx-auto" />
+                          <p className="mt-2 text-gray-600 truncate">
+                            Vape pens
+                          </p>
+                          <p className="text-sm text-gray-500 truncate">
+                            ( {item.vapeNumber} items)
+                          </p>
+                        </div>
+
+                        <div className="">
+                          <OtherIcon className="w-8 h-8 mx-auto" />
+                          <p className="mt-2 text-gray-600 truncate">Other</p>
+                          <p className="text-sm text-gray-500 truncate">
+                            ( {item.otherNumber} items)
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-2 lg:p-4 lg:col-span-1 ">
+                      <p className="font-bold text-gray-700">Menu Genetics</p>
+                      <div className="flex items-center mt-4 space-x-2 ">
+                        <p className="text-gray-600 ">Hybrid</p>
+                        <span className="text-sm">(117 items)</span>
+                      </div>
+
+                      <div className="flex items-center space-x-2 ">
+                        <p className="text-gray-600 ">Indica</p>
+                        <span className="text-sm">(45 items)</span>
+                      </div>
+
+                      <div className="flex items-center space-x-2 ">
+                        <p className="text-gray-600 ">Sativa</p>
+                        <span className="text-sm">(415 items)</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
