@@ -124,9 +124,14 @@ const responsive = {
   },
 };
 
+const pickDistance = ["1 mile", "5miles", "20 miles", "50 miles", "100 miles"];
+
 export default function delivery() {
   const [activeItem, setActiveItem] = useState(0);
   const [recommendDrop, setDropdown] = useState(false);
+
+  const [distance, setDistance] = useState(pickDistance[0]);
+  const [distanceDrop, setDistanceDrop] = useState(false);
 
   const filterOptions = [
     "Order online",
@@ -151,6 +156,11 @@ export default function delivery() {
   function handleClickSort(option: string) {
     setSortOptions(option);
     setDropdown(false);
+  }
+
+  function handleClickDistance(distance: string) {
+    setDistance(distance);
+    setDistanceDrop(false);
   }
 
   return (
@@ -204,6 +214,63 @@ export default function delivery() {
             </span>
           </div>
         </div>
+        {activeItem === 1 && (
+          <div className="relative">
+            <button
+              onClick={() => setDistanceDrop(true)}
+              className="flex items-center justify-around w-32 p-2 px-4 space-x-2 border cursor-pointer "
+            >
+              <p className="text-sm font-bold text-gray-500">{distance}</p>
+
+              {!distanceDrop ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  className="w-3 h-3 text-gray-500 fill-current "
+                >
+                  <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  className="w-3 h-3 text-gray-500 fill-current "
+                >
+                  <path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" />
+                </svg>
+              )}
+            </button>
+
+            {distanceDrop && (
+              <div className="absolute left-0 z-20 w-32 bg-white border rounded shadow top-10 ">
+                {pickDistance.map((item, idx) => {
+                  return (
+                    <p
+                      onClick={() => {
+                        handleClickDistance(item);
+                      }}
+                      key={idx}
+                      className="p-2 px-4 text-sm cursor-pointer hover:text-white hover:bg-teal-400"
+                    >
+                      {item}
+                    </p>
+                  );
+                })}
+              </div>
+            )}
+
+            {distanceDrop && (
+              <div
+                onClick={() => setDistanceDrop(false)}
+                className="fixed inset-0 z-10"
+              />
+            )}
+          </div>
+        )}
         <div className="flex items-center p-1 space-x-2 overflow-x-scroll text-sm sm:overflow-auto whitespace-nowrap">
           {filterOptions.map((item: string, idx: number) => {
             return (
@@ -258,7 +325,7 @@ export default function delivery() {
             })}
           </Carousel>
           <div>
-            <div className="flex pb-2 space-x-2 border-b">
+            <div className="flex pb-2 mt-8 space-x-2 border-b">
               <p>Sort by </p>
               <div className="relative ">
                 <div
@@ -317,143 +384,7 @@ export default function delivery() {
             </div>
             <div className="mt-4 space-y-4 divide-y ">
               {mockData.map((item, idx) => {
-                return (
-                  <div
-                    key={idx}
-                    className="grid-cols-1 lg:grid lg:grid-cols-4 "
-                  >
-                    <div className="p-2 lg:p-4 lg:col-span-1 ">
-                      <div className="flex items-center space-x-4 ">
-                        <div className="relative flex-shrink-0 w-12 h-12 rounded ">
-                          <Image
-                            src={item.img}
-                            alt="Picture of the author"
-                            layout="fill" // required
-                            objectFit="cover" // change to suit your needs
-                            className="" // just an example
-                          />
-                        </div>
-                        <div>
-                          <p className="font-bold truncate ">{item.title}</p>
-                          <p className="text-sm text-gray-500 truncate ">
-                            {item.deliveryTime}
-                          </p>
-                          <p className="text-sm text-gray-500 truncate ">
-                            {item.usage}
-                          </p>
-                          <div className="flex items-center space-x-2">
-                            {!!item.deliveryFee ? (
-                              <p className="text-sm text-gray-500 truncate ">
-                                {item.deliveryFee} fee
-                              </p>
-                            ) : (
-                              <p className="text-sm font-semibold text-teal-500">
-                                Free delivery
-                              </p>
-                            )}
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              className="flex-shrink-0 w-1 h-1 text-gray-500 fill-current "
-                            >
-                              <circle cx="12" cy="12" r="12" />
-                            </svg>
-                            <p className="text-sm text-gray-600 ">
-                              {item.price}
-                            </p>
-                          </div>
-                          <div className="flex items-center space-x-2 text-sm">
-                            <FullStarIcon className="w-3 h-3 text-yellow-400 fill-current " />
-                            <span className="text-sm ">{item.rate}</span>
-                            <span className="text-gray-500 ">
-                              ({item.member})
-                            </span>
-                          </div>
-                          {item.availableOrder && (
-                            <span className="p-1 text-sm font-semibold bg-gray-100 rounded">
-                              Order online
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-2 lg:p-4 lg:col-span-2 ">
-                      <div className="flex space-x-2">
-                        <p className="font-bold text-gray-700">
-                          Menu breakdown
-                        </p>
-
-                        <span className="text-sm text-gray-500 truncate">
-                          ({item.count} items)
-                        </span>
-                      </div>
-                      <div className="grid items-center grid-cols-5 mt-4 text-xs text-center gap-x-1">
-                        <div className="">
-                          <ConcentrateIcon className="w-8 h-8 mx-auto" />
-                          <p className="mt-2 text-gray-600 truncate ">
-                            Concentrates
-                          </p>
-                          <p className="text-sm text-gray-500 truncate ">
-                            ( {item.concentrateNumber} items)
-                          </p>
-                        </div>
-
-                        <div className="">
-                          <EdibleIcon className="w-8 h-8 mx-auto" />
-                          <p className="mt-2 text-gray-600 truncate">Edibles</p>
-                          <p className="text-sm text-gray-500 truncate">
-                            ( {item.edibleNumber} items)
-                          </p>
-                        </div>
-
-                        <div className="">
-                          <FlowerIcon className="w-8 h-8 mx-auto" />
-                          <p className="mt-2 text-gray-600 truncate">Flower</p>
-                          <p className="text-sm text-gray-500 truncate">
-                            ( {item.flowerNumber} items)
-                          </p>
-                        </div>
-
-                        <div className="">
-                          <VapePenIcon className="w-8 h-8 mx-auto" />
-                          <p className="mt-2 text-gray-600 truncate">
-                            Vape pens
-                          </p>
-                          <p className="text-sm text-gray-500 truncate">
-                            ( {item.vapeNumber} items)
-                          </p>
-                        </div>
-
-                        <div className="">
-                          <OtherIcon className="w-8 h-8 mx-auto" />
-                          <p className="mt-2 text-gray-600 truncate">Other</p>
-                          <p className="text-sm text-gray-500 truncate">
-                            ( {item.otherNumber} items)
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-2 lg:p-4 lg:col-span-1 ">
-                      <p className="font-bold text-gray-700">Menu Genetics</p>
-                      <div className="flex items-center mt-4 space-x-2 ">
-                        <p className="text-gray-600 ">Hybrid</p>
-                        <span className="text-sm">(117 items)</span>
-                      </div>
-
-                      <div className="flex items-center space-x-2 ">
-                        <p className="text-gray-600 ">Indica</p>
-                        <span className="text-sm">(45 items)</span>
-                      </div>
-
-                      <div className="flex items-center space-x-2 ">
-                        <p className="text-gray-600 ">Sativa</p>
-                        <span className="text-sm">(415 items)</span>
-                      </div>
-                    </div>
-                  </div>
-                );
+                return <DisplayItems product={item} key={idx} />;
               })}
             </div>
           </div>
@@ -486,3 +417,214 @@ function renderStar(rate: string) {
     </div>
   );
 }
+
+interface DisplayProps {
+  product: any;
+}
+
+const DisplayItems = (props: DisplayProps) => {
+  const { product } = props;
+  const [show, setShow] = useState(false);
+  return (
+    <div className="grid-cols-1 lg:grid lg:grid-cols-4 ">
+      <div className="p-2 lg:p-4 lg:col-span-1 ">
+        <div className="flex items-center space-x-4 ">
+          <div className="relative flex-shrink-0 w-12 h-12 rounded ">
+            <Image
+              src={product.img}
+              alt="Picture of the author"
+              layout="fill" // required
+              objectFit="cover" // change to suit your needs
+              className="" // just an example
+            />
+          </div>
+          <div>
+            <p className="font-bold truncate ">{product.title}</p>
+            <p className="text-sm text-gray-500 truncate ">
+              {product.deliveryTime}
+            </p>
+            <p className="text-sm text-gray-500 truncate ">{product.usage}</p>
+            <div className="flex items-center space-x-2">
+              {!!product.deliveryFee ? (
+                <p className="text-sm text-gray-500 truncate ">
+                  {product.deliveryFee} fee
+                </p>
+              ) : (
+                <p className="text-sm font-semibold text-teal-500">
+                  Free delivery
+                </p>
+              )}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="flex-shrink-0 w-1 h-1 text-gray-500 fill-current "
+              >
+                <circle cx="12" cy="12" r="12" />
+              </svg>
+              <p className="text-sm text-gray-600 ">{product.price}</p>
+            </div>
+            <div className="flex items-center space-x-2 text-sm">
+              <FullStarIcon className="w-3 h-3 text-yellow-400 fill-current " />
+              <span className="text-sm ">{product.rate}</span>
+              <span className="text-gray-500 ">({product.member})</span>
+            </div>
+            {product.availableOrder && (
+              <span className="p-1 text-sm font-semibold bg-gray-100 rounded">
+                Order online
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="mt-4 lg:hidden">
+          <button
+            onClick={() => setShow(!show)}
+            className="p-2 px-4 text-sm text-green-500 border border-green-500 rounded "
+          >
+            see more
+          </button>
+        </div>
+      </div>
+
+      <div className="hidden p-2 lg:p-4 lg:col-span-2 lg:block">
+        <div className="flex space-x-2">
+          <p className="font-bold text-gray-700">Menu breakdown</p>
+
+          <span className="text-sm text-gray-500 truncate">
+            ({product.count} items)
+          </span>
+        </div>
+        <div className="grid items-center grid-cols-5 mt-4 text-xs text-center gap-x-1">
+          <div className="">
+            <ConcentrateIcon className="w-8 h-8 mx-auto" />
+            <p className="mt-2 text-gray-600 truncate ">Concentrates</p>
+            <p className="text-sm text-gray-500 truncate ">
+              ( {product.concentrateNumber} items)
+            </p>
+          </div>
+
+          <div className="">
+            <EdibleIcon className="w-8 h-8 mx-auto" />
+            <p className="mt-2 text-gray-600 truncate">Edibles</p>
+            <p className="text-sm text-gray-500 truncate">
+              ( {product.edibleNumber} items)
+            </p>
+          </div>
+
+          <div className="">
+            <FlowerIcon className="w-8 h-8 mx-auto" />
+            <p className="mt-2 text-gray-600 truncate">Flower</p>
+            <p className="text-sm text-gray-500 truncate">
+              ( {product.flowerNumber} items)
+            </p>
+          </div>
+
+          <div className="">
+            <VapePenIcon className="w-8 h-8 mx-auto" />
+            <p className="mt-2 text-gray-600 truncate">Vape pens</p>
+            <p className="text-sm text-gray-500 truncate">
+              ( {product.vapeNumber} items)
+            </p>
+          </div>
+
+          <div className="">
+            <OtherIcon className="w-8 h-8 mx-auto" />
+            <p className="mt-2 text-gray-600 truncate">Other</p>
+            <p className="text-sm text-gray-500 truncate">
+              ( {product.otherNumber} items)
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="hidden p-2 lg:p-4 lg:col-span-1 lg:block">
+        <p className="font-bold text-gray-700">Menu Genetics</p>
+        <div className="flex items-center mt-4 space-x-2 ">
+          <p className="text-gray-600 ">Hybrid</p>
+          <span className="text-sm">(117 items)</span>
+        </div>
+
+        <div className="flex items-center space-x-2 ">
+          <p className="text-gray-600 ">Indica</p>
+          <span className="text-sm">(45 items)</span>
+        </div>
+
+        <div className="flex items-center space-x-2 ">
+          <p className="text-gray-600 ">Sativa</p>
+          <span className="text-sm">(415 items)</span>
+        </div>
+      </div>
+      {show && (
+        <div className=" lg:hidden">
+          <div className="p-2 lg:p-4 lg:col-span-2 ">
+            <div className="flex space-x-2">
+              <p className="font-bold text-gray-700">Menu breakdown</p>
+
+              <span className="text-sm text-gray-500 truncate">
+                ({product.count} items)
+              </span>
+            </div>
+            <div className="grid items-center grid-cols-5 mt-4 text-xs text-center gap-x-1">
+              <div className="">
+                <ConcentrateIcon className="w-8 h-8 mx-auto" />
+                <p className="mt-2 text-gray-600 truncate ">Concentrates</p>
+                <p className="text-sm text-gray-500 truncate ">
+                  ( {product.concentrateNumber} items)
+                </p>
+              </div>
+
+              <div className="">
+                <EdibleIcon className="w-8 h-8 mx-auto" />
+                <p className="mt-2 text-gray-600 truncate">Edibles</p>
+                <p className="text-sm text-gray-500 truncate">
+                  ( {product.edibleNumber} items)
+                </p>
+              </div>
+
+              <div className="">
+                <FlowerIcon className="w-8 h-8 mx-auto" />
+                <p className="mt-2 text-gray-600 truncate">Flower</p>
+                <p className="text-sm text-gray-500 truncate">
+                  ( {product.flowerNumber} items)
+                </p>
+              </div>
+
+              <div className="">
+                <VapePenIcon className="w-8 h-8 mx-auto" />
+                <p className="mt-2 text-gray-600 truncate">Vape pens</p>
+                <p className="text-sm text-gray-500 truncate">
+                  ( {product.vapeNumber} items)
+                </p>
+              </div>
+
+              <div className="">
+                <OtherIcon className="w-8 h-8 mx-auto" />
+                <p className="mt-2 text-gray-600 truncate">Other</p>
+                <p className="text-sm text-gray-500 truncate">
+                  ( {product.otherNumber} items)
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="p-2 lg:p-4 lg:col-span-1 ">
+            <p className="font-bold text-gray-700">Menu Genetics</p>
+            <div className="flex items-center mt-4 space-x-2 ">
+              <p className="text-gray-600 ">Hybrid</p>
+              <span className="text-sm">(117 items)</span>
+            </div>
+
+            <div className="flex items-center space-x-2 ">
+              <p className="text-gray-600 ">Indica</p>
+              <span className="text-sm">(45 items)</span>
+            </div>
+
+            <div className="flex items-center space-x-2 ">
+              <p className="text-gray-600 ">Sativa</p>
+              <span className="text-sm">(415 items)</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};

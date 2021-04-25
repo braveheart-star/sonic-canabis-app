@@ -10,7 +10,7 @@ export function OtherIcon({ className }: any) {
       viewBox="0 0 41 40"
       className={className}
     >
-      <g clip-path="url(#clip0)">
+      <g clipPath="url(#clip0)">
         <path
           d="M34.158 5.203H4.24L2.539 38.291C2.491 39.22 3.232 40 4.163 40h29.995V5.203z"
           fill="#EFCB84"

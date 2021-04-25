@@ -10,7 +10,7 @@ export function ConcentrateIcon({ className }: any) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <g clip-path="url(#clip0)">
+      <g clipPath="url(#clip0)">
         <path
           d="M23.75 6.417a.813.813 0 01-.238-.575v-3.24a2.602 2.602 0 00-5.203 0v3.24a.813.813 0 01-.238.575l-.337.337a.813.813 0 00-.238.575v1.614h6.83V7.33a.813.813 0 00-.239-.575l-.337-.337z"
           fill="#FFC250"
