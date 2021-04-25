@@ -1,12 +1,68 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import { Layout } from "../../components/common/Layout";
+import { FullStarIcon } from "../../components/icons/FullStarIcon";
+import { HalfStarIcon } from "../../components/icons/HalfStarIcon";
+import { EmptyStarIcon } from "../../components/icons/EmptyStarIcon";
+
+const mockData = [
+  {
+    title: "KUSHAGRAM",
+    rate: "4",
+    count: "320",
+    usage: "Medical & Recreational",
+    price: "$50 minimum",
+    availableOrder: false,
+    img: "/images/brands/1.png",
+  },
+
+  {
+    title: "Amuse Canabis Delivery",
+    rate: "4.6",
+    count: "235",
+    usage: "Medical & Recreational",
+    price: "$50 minimum",
+    availableOrder: true,
+    img: "/images/brands/2.png",
+  },
+
+  {
+    title: "PAC LA - Downtown LA",
+    rate: "4.7",
+    count: "567",
+    usage: "Medical & Recreational",
+    price: "$5 fee, $50 minimum",
+    availableOrder: true,
+    img: "/images/brands/3.png",
+  },
+
+  {
+    title: "HERB",
+    rate: "4.9",
+    count: "640",
+    usage: "Medical & Recreational",
+    price: "$50 minimum",
+    availableOrder: false,
+    img: "/images/brands/4.png",
+  },
+
+  {
+    title: "BLAZE",
+    rate: "4.6",
+    count: "364",
+    usage: "Medical & Recreational",
+    price: "",
+    availableOrder: false,
+    img: "/images/brands/5.png",
+  },
+];
 
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4,
+    items: 5,
     centerMode: true,
     paritialVisibilityGutter: 40,
   },
@@ -35,7 +91,7 @@ export default function delivery() {
                 onClick={() => {
                   setActiveItem(0);
                 }}
-                className={`py-2 rounded focus:outline-none ${
+                className={`py-2  rounded-lg focus:outline-none ${
                   activeItem === 0 ? "bg-green-100 text-green-700" : ""
                 }`}
               >
@@ -45,7 +101,7 @@ export default function delivery() {
                 onClick={() => {
                   setActiveItem(1);
                 }}
-                className={`py-2 rounded focus:outline-none ${
+                className={`py-2 rounded-lg focus:outline-none ${
                   activeItem === 1 ? "bg-green-100 text-green-700" : ""
                 }`}
               >
@@ -93,43 +149,67 @@ export default function delivery() {
               {/* <p className="text-lg font-bold tracking-wider lg:text-xl">
                 Featured
               </p> */}
-              <div className="flex items-center justify-between ">
-                <p className="p-4 text-lg font-bold tracking-wider">
+              <div className="items-center justify-between ">
+                <p className="p-3 text-lg font-bold tracking-wider">
                   Featured Brands
                 </p>
-                <Carousel
-                  responsive={responsive}
-                  arrows={false}
-                  infinite={true}
-                >
-                  {[1, 2, 3, 4, 5, 6, 7].map((item) => {
-                    return (
-                      <div className="w-full p-2 mx-auto text-sm " key={item}>
-                        <div className="p-2 space-y-1 border rounded">
-                          <div className="w-full p-4 sm:p-2">
-                            <Image
-                              src="/images/home/hot.png"
-                              alt="slide"
-                              width="1200"
-                              height="800"
-                              draggable="false"
-                            />
-                          </div>
+                <div>
+                  <Carousel
+                    responsive={responsive}
+                    arrows={false}
+                    infinite={true}
+                  >
+                    {mockData.map((item, idx) => {
+                      return (
+                        <div className="w-full p-2 mx-auto text-sm " key={idx}>
+                          <div className="p-4 space-y-1 border rounded">
+                            <div className="w-full">
+                              <Image
+                                src={item.img}
+                                alt="slide"
+                                width="1000"
+                                height="800"
+                                draggable="false"
+                              />
+                            </div>
 
-                          <p className="text-green-700 ">Storewide</p>
-                          <p className="font-semibold text-black ">
-                            25% Off In-store on 1000+ Items
-                          </p>
-                          <p className="text-gray-500 ">Storefront</p>
-                          <p className="text-gray-500 ">Delivery</p>
-                          <p className="text-green-700 ">
-                            Medical and Recreational
-                          </p>
+                            <p className="text-base font-bold text-gray-700 ">
+                              {item.title}
+                            </p>
+                            <div className="flex space-x-1 ">
+                              {[
+                                ...Array(Math.floor(Number(item.rate))).keys(),
+                              ].map((item) => {
+                                return (
+                                  <FullStarIcon
+                                    key={item}
+                                    className="w-4 h-4 text-yellow-400 fill-current "
+                                  />
+                                );
+                              })}
+                              {Number(item.rate) -
+                                Math.floor(Number(item.rate)) >
+                              0.5 ? (
+                                Number(item.rate) -
+                                  Math.floor(Number(item.rate)) >
+                                0.8 ? (
+                                  <FullStarIcon
+                                    key={item}
+                                    className="w-4 h-4 text-yellow-400 fill-current "
+                                  />
+                                ) : (
+                                  <HalfStarIcon className="w-4 h-4 text-yellow-400 fill-current " />
+                                )
+                              ) : (
+                                <EmptyStarIcon className="w-4 h-4 text-yellow-400 fill-current " />
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </Carousel>
+                      );
+                    })}
+                  </Carousel>
+                </div>
               </div>
             </div>
           </div>
