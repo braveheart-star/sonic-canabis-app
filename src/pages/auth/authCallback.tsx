@@ -39,7 +39,6 @@ export default function authCallback() {
 
   useEffect(() => {
     if (!!query.email) {
-      console.log("🚀 ~ file: callback.tsx ~ line 9 ~ callback ~ query", query);
       const { email, verificationCode } = query;
       activateUser(email, verificationCode);
     }

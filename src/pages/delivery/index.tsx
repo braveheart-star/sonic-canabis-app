@@ -11,98 +11,7 @@ import { EdibleIcon } from "../../components/icons/delivery/EdibleIcon";
 import { FlowerIcon } from "../../components/icons/delivery/FlowerIcon";
 import { VapePenIcon } from "../../components/icons/delivery/VapePenIcon";
 import { OtherIcon } from "../../components/icons/delivery/OtherIcon";
-
-const mockData = [
-  {
-    title: "KUSHAGRAM",
-    rate: "4",
-    member: "320",
-    count: "270",
-    usage: "Medical & Recreational",
-    price: "$50 minimum",
-    availableOrder: false,
-    deliveryTime: "60-90min",
-    deliveryFee: "",
-    concentrateNumber: "123",
-    edibleNumber: "323",
-    flowerNumber: "212",
-    vapeNumber: "115",
-    otherNumber: "121",
-    img: "/images/brands/1.png",
-  },
-
-  {
-    title: "Amuse Canabis Delivery",
-    rate: "4.6",
-    member: "235",
-    count: "250",
-    usage: "Medical & Recreational",
-    price: "$50 minimum",
-    availableOrder: true,
-    deliveryTime: "20-30min",
-    deliveryFee: "5$",
-    concentrateNumber: "167",
-    edibleNumber: "124",
-    flowerNumber: "213",
-    vapeNumber: "215",
-    otherNumber: "332",
-    img: "/images/brands/2.png",
-  },
-
-  {
-    title: "PAC LA - Downtown LA",
-    rate: "4.7",
-    member: "567",
-    count: "643",
-    usage: "Medical & Recreational",
-    price: "$5 fee, $50 minimum",
-    availableOrder: true,
-    deliveryTime: "20-30min",
-    deliveryFee: "5$",
-    concentrateNumber: "417",
-    edibleNumber: "211",
-    flowerNumber: "442",
-    vapeNumber: "421",
-    otherNumber: "321",
-    img: "/images/brands/3.png",
-  },
-
-  {
-    title: "HERB",
-    rate: "4.9",
-    member: "640",
-    count: "143",
-    usage: "Medical & Recreational",
-    price: "$50 minimum",
-    availableOrder: false,
-    deliveryTime: "20-30min",
-    deliveryFee: "5$",
-    concentrateNumber: "147",
-    edibleNumber: "226",
-    flowerNumber: "534",
-    vapeNumber: "11",
-    otherNumber: "21",
-    img: "/images/brands/4.png",
-  },
-
-  {
-    title: "BLAZE",
-    rate: "4.6",
-    member: "364",
-    count: "213",
-    usage: "Medical & Recreational",
-    price: "",
-    availableOrder: false,
-    deliveryTime: "20-30min",
-    deliveryFee: "",
-    concentrateNumber: "237",
-    edibleNumber: "111",
-    flowerNumber: "42",
-    vapeNumber: "155",
-    otherNumber: "671",
-    img: "/images/brands/5.png",
-  },
-];
+import { brandMockData } from "../../utils/data";
 
 const responsive = {
   desktop: {
@@ -291,7 +200,7 @@ export default function delivery() {
         <div className="space-y-4 sm:p-3">
           <p className="text-lg font-bold tracking-wider ">Featured Brands</p>
           <Carousel responsive={responsive} arrows={false} infinite={true}>
-            {mockData.map((item, idx) => {
+            {brandMockData.map((item, idx) => {
               return (
                 <div className="w-full h-full p-2 mx-auto text-sm " key={idx}>
                   <div className="h-full p-4 space-y-1 border rounded">
@@ -386,7 +295,7 @@ export default function delivery() {
               </div>
             </div>
             <div className="mt-4 space-y-4 divide-y ">
-              {mockData.map((item, idx) => {
+              {brandMockData.map((item, idx) => {
                 return <DisplayItems product={item} key={idx} />;
               })}
             </div>
