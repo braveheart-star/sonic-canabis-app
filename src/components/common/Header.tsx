@@ -25,7 +25,7 @@ const providers = [
   },
   {
     name: "Brands",
-    url: "",
+    url: "/brand",
   },
   {
     name: "Products",
@@ -50,10 +50,6 @@ const providers = [
 ];
 
 export const Header = () => {
-  const router = useRouter();
-  const { pathname } = router;
-  console.log("🚀 ~ file: Header.tsx ~ line 55 ~ Header ~ query", pathname);
-
   const { data: accessToken } = useSWR("accessToken", storage);
   const isLoggedIn = checkLogin(accessToken);
 
@@ -71,68 +67,12 @@ export const Header = () => {
     <div className="bg-green-500 ">
       <div className="container p-4 mx-auto lg:p-2 max-w-7xl">
         <div className="grid space-y-4 text-sm lg:grid-flow-col lg:grid-cols-12 lg:grid-rows-2 lg:gap-2 xl:text-base">
-          <div className="flex justify-between lg:hidden">
-            <button
-              className=" focus:outline-none"
-              onClick={() => setDropdown(true)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                className="w-5 h-5 text-gray-100 fill-current "
-              >
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-              </svg>
-            </button>
-            <div className="flex items-center space-x-5">
-              <button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  className="w-5 h-5 text-gray-100 fill-current "
-                >
-                  <path d="M4 8a6 6 0 0 1 4.03-5.67 2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2V8zm8 10a2 2 0 1 1-4 0h4z" />
-                </svg>
-              </button>
-
-              <button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  className="w-5 h-5 text-gray-100 fill-current "
-                >
-                  <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
-                </svg>
-              </button>
-
-              <button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  className="w-5 h-5 text-gray-100 fill-current "
-                >
-                  <path d="M4 2h16l-3 9H4a1 1 0 1 0 0 2h13v2H4a3 3 0 0 1 0-6h.33L3 5 2 2H0V0h3a1 1 0 0 1 1 1v1zm1 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
-                </svg>
-              </button>
-
-              {isLoggedIn && (
-                <div className="relative flex items-center">
-                  <button onClick={() => setAccountDrop(true)}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      className="w-5 h-5 text-gray-100 fill-current "
-                    >
-                      <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z" />
-                    </svg>
-                  </button>
-                  <Maybe condition={accountDrop}>
-                    <AccountDrop />
-                  </Maybe>
-                </div>
-              )}
-            </div>
-          </div>
+          <RenderMobile
+            setDropdown={setDropdown}
+            setAccountDrop={setAccountDrop}
+            accountDrop={accountDrop}
+            isLoggedIn={isLoggedIn}
+          />
           <div className="hidden w-full col-span-1 row-span-2 mx-auto lg:flex ">
             <Link href="/">
               <div className="flex-shrink-0 w-20 h-20 mx-auto cursor-pointer ">
@@ -244,23 +184,7 @@ export const Header = () => {
               </div>
             </div>
           </div>
-          <div className="items-center px-3 py-2 space-x-5 overflow-x-scroll border-t lg:overflow-auto sm:space-x-4 whitespace-nowrap lg:flex lg:col-start-2 lg:col-end-13 lg:space-x-7 text-gray-50 ">
-            {providers.map((item, idx) => {
-              return (
-                <Link href={item.url} key={idx}>
-                  <button
-                    className={`font-semibold tracking-wide focus:outline-none sm:tracking-normal ${
-                      pathname === item.url
-                        ? " text-lime-100 font-bold"
-                        : " text-white"
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                </Link>
-              );
-            })}
-          </div>
+          <RenderProvider />
         </div>
       </div>
 
@@ -280,3 +204,99 @@ export const Header = () => {
     </div>
   );
 };
+
+interface MobileProps {
+  setDropdown: Function;
+  setAccountDrop: Function;
+  accountDrop: boolean;
+  isLoggedIn: boolean;
+}
+
+function RenderMobile(props: MobileProps) {
+  const { setDropdown, setAccountDrop, accountDrop, isLoggedIn } = props;
+  return (
+    <div className="flex justify-between lg:hidden">
+      <button className=" focus:outline-none" onClick={() => setDropdown(true)}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          className="w-5 h-5 text-gray-100 fill-current "
+        >
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </button>
+      <div className="flex items-center space-x-5">
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            className="w-5 h-5 text-gray-100 fill-current "
+          >
+            <path d="M4 8a6 6 0 0 1 4.03-5.67 2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2V8zm8 10a2 2 0 1 1-4 0h4z" />
+          </svg>
+        </button>
+
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            className="w-5 h-5 text-gray-100 fill-current "
+          >
+            <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
+          </svg>
+        </button>
+
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            className="w-5 h-5 text-gray-100 fill-current "
+          >
+            <path d="M4 2h16l-3 9H4a1 1 0 1 0 0 2h13v2H4a3 3 0 0 1 0-6h.33L3 5 2 2H0V0h3a1 1 0 0 1 1 1v1zm1 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+          </svg>
+        </button>
+
+        {isLoggedIn && (
+          <div className="relative flex items-center">
+            <button onClick={() => setAccountDrop(true)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                className="w-5 h-5 text-gray-100 fill-current "
+              >
+                <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z" />
+              </svg>
+            </button>
+            <Maybe condition={accountDrop}>
+              <AccountDrop />
+            </Maybe>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function RenderProvider() {
+  const router = useRouter();
+  const { pathname } = router;
+  return (
+    <div className="items-center px-3 py-2 space-x-5 overflow-x-scroll border-t lg:overflow-auto sm:space-x-4 whitespace-nowrap lg:flex lg:col-start-2 lg:col-end-13 lg:space-x-7 text-gray-50 ">
+      {providers.map((item, idx) => {
+        return (
+          <Link href={item.url} key={idx}>
+            <button
+              className={`font-semibold tracking-wide focus:outline-none sm:tracking-normal ${
+                pathname === item.url
+                  ? " text-lime-100 font-bold"
+                  : " text-white"
+              }`}
+            >
+              {item.name}
+            </button>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}

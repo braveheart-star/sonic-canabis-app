@@ -324,6 +324,7 @@ export default function delivery() {
               );
             })}
           </Carousel>
+
           <div>
             <div className="flex pb-2 mt-8 space-x-2 border-b">
               <p>Sort by </p>
