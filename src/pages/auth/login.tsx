@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
+import { mutate } from "swr";
+
 import { GoogleLogin } from "react-google-login";
 import { registerPayload } from "../../utils/type";
 import { validateEmail, validatePassword } from "../../utils/function";
 import UserAPI from "../../lib/user";
-import Swal from "sweetalert2";
-import { mutate } from "swr";
-import { useRouter } from "next/router";
 
 export default function login() {
   const router = useRouter();

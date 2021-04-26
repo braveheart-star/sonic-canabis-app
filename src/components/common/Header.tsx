@@ -10,15 +10,42 @@ import storage from "../../utils/storage";
 import checkLogin from "../../utils/checkLogin";
 
 const providers = [
-  "Dispensaries",
-  "Deliveries",
-  "Maps",
-  "Brands",
-  "Products",
-  "Deals",
-  "Learn",
-  "Strains",
-  "Order online",
+  {
+    name: "Dispensaries",
+    url: "",
+  },
+  {
+    name: "Deliveries",
+    url: "/delivery",
+  },
+  {
+    name: "Maps",
+    url: "",
+  },
+  {
+    name: "Brands",
+    url: "",
+  },
+  {
+    name: "Products",
+    url: "",
+  },
+  {
+    name: "Deals",
+    url: "",
+  },
+  {
+    name: "Learn",
+    url: "",
+  },
+  {
+    name: "Strains",
+    url: "",
+  },
+  {
+    name: "Order online",
+    url: "",
+  },
 ];
 
 export const Header = () => {
@@ -219,9 +246,9 @@ export const Header = () => {
           <div className="items-center px-3 py-2 space-x-5 overflow-x-scroll border-t lg:overflow-auto sm:space-x-4 whitespace-nowrap lg:flex lg:col-start-2 lg:col-end-13 lg:space-x-7 text-gray-50 ">
             {providers.map((item, idx) => {
               return (
-                <Link href={`/${item.toLowerCase()}`} key={idx}>
+                <Link href={item.url} key={idx}>
                   <button className="font-semibold tracking-wide focus:outline-none sm:tracking-normal">
-                    {item}
+                    {item.name}
                   </button>
                 </Link>
               );
