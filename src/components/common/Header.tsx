@@ -28,7 +28,7 @@ const providers = [
   },
   {
     name: "Products",
-    url: "",
+    url: "/product",
   },
   {
     name: "Deals",

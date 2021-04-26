@@ -1,7 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-export const Banner = () => {
+interface BannerProps {
+  content: string;
+}
+
+export const Banner = (props: BannerProps) => {
+  const { content } = props;
   return (
     <div className="relative w-full mt-4 ">
       <div className="relative hidden w-full h-56 rounded shadow lg:flex">
@@ -37,7 +42,7 @@ export const Banner = () => {
         <div className="flex h-full ">
           <div className="m-auto ">
             <span className="text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-green-400 via-emerald-500 to-cyan-500">
-              Canabis products
+              {content}
             </span>
           </div>
         </div>

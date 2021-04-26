@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Layout>
       <div className="container px-2 mx-auto space-y-8 sm:px-4 max-w-7xl">
-        <Banner />
+        <Banner content="canabis products" />
         <div className="space-y-4 lg:space-y-8 ">
           <Card />
           <Card />
