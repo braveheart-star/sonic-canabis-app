@@ -5,7 +5,6 @@ import { mutate } from "swr";
 export const AccountDrop = () => {
   const handleLogout = async () => {
     window.localStorage.removeItem("accessToken");
-    mutate("user", null);
     mutate("accessToken", "");
   };
 

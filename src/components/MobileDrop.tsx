@@ -14,8 +14,7 @@ export const MobileDrop = (props: any) => {
   const isLoggedIn = checkLogin(accessToken);
 
   const handleLogout = async () => {
-    window.localStorage.removeItem("user");
-    mutate("user", null);
+    window.localStorage.removeItem("accessToken");
     mutate("accessToken", "");
   };
 
