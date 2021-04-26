@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
+import { mutate } from "swr";
 
 import { NotifyStatus, registerPayload } from "../../utils/type";
 import { validateEmail, notify, validatePassword } from "../../utils/function";
+import UserAPI from "../../lib/user";
 
 export default function register() {
+  const router = useRouter();
+
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
   const [emailValid, setEmailValid] = useState(true);
@@ -32,20 +38,26 @@ export default function register() {
     return true;
   }
 
-  function handleRegister() {
+  async function handleRegister() {
     if (!handleFormValidation()) return;
-    // else {
-    //   AuthAPI.register(registerPayload).then((res) => {
-    //     if (res.data.error) {
-    //       Swal.fire("Error", "Email already existed !", "error");
-    //     } else
-    //       Swal.fire(
-    //         " Success",
-    //         "Please check your email for validation",
-    //         "success"
-    //       );
-    //   });
-    // }
+
+    try {
+      const { data, status } = await UserAPI.register(
+        registerPayload.email,
+        registerPayload.password
+      );
+
+      if (status !== 200 || data?.error) {
+        Swal.fire("Error", data.error, "error");
+      }
+      if (data?.user) {
+        window.localStorage.setItem("user", JSON.stringify(data.user));
+        mutate("user", data.user);
+        Swal.fire("Info", "Please check your email", "info");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function handleOnSetValue(event: any) {

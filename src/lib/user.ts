@@ -20,7 +20,7 @@ const UserAPI = {
   login: async (email: string, password: string) => {
     try {
       const response = await axios.post(
-        `${SERVER_BASE_URL}/users/login`,
+        `${SERVER_BASE_URL}/user/login`,
         JSON.stringify({ user: { email, password } }),
         {
           headers: {
@@ -33,22 +33,36 @@ const UserAPI = {
       return error.response;
     }
   },
-  register: async (username: string, email: string, password: string) => {
+  register: async (email: string, password: string) => {
     try {
       const response = await axios.post(
-        `${SERVER_BASE_URL}/users`,
-        JSON.stringify({ user: { username, email, password } }),
+        `${SERVER_BASE_URL}/user/register`,
+        JSON.stringify({ email, password }),
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
+
       return response;
     } catch (error) {
       return error.response;
     }
   },
+
+  activate: async (email: string, confirmCode: string) => {
+    try {
+      const response = await axios.get(`${SERVER_BASE_URL}/user/activate`, {
+        params: { email, confirmCode },
+      });
+
+      return response;
+    } catch (error) {
+      return error.response;
+    }
+  },
+
   save: async (user: any) => {
     try {
       const response = await axios.put(

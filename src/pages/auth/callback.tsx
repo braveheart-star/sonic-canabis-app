@@ -1,29 +1,28 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import queryString from "query-string";
-import useSWR from "swr";
-import { SERVER_BASE_URL } from "../../utils/constant";
+import UserAPI from "../../lib/user";
+import Swal from "sweetalert2";
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
 export default function callback() {
   const router = useRouter();
-  const location = useRouter().asPath;
+  const { query } = router;
 
-  const parsedQuery = queryString.parse(location.substring(1)); // returns the query object
+  async function activateUser(email: any, confirmCode: any) {
+    const { data, status } = await UserAPI.activate(email, confirmCode);
 
-  const { data } = useSWR(
-    parsedQuery.email
-      ? `${SERVER_BASE_URL}/user/active?email=${parsedQuery.email}&confirmCode=${parsedQuery.verificationCode}`
-      : null,
-    fetcher
-  );
+    if (status !== 200 || data?.error) {
+      Swal.fire("Error", data.message, "error");
+      return;
+    }
+    Swal.fire("Success", "Redirecting to homepage", "success");
+  }
 
   useEffect(() => {
-    if (data) {
-      // setAccessToken(data.access_token);
-      router.push("/");
+    if (!!query.email) {
+      console.log("🚀 ~ file: callback.tsx ~ line 9 ~ callback ~ query", query);
+      const { email, verificationCode } = query;
+      activateUser(email, verificationCode);
     }
-  }, [data]);
-
+  }, [query]);
   return null;
 }
