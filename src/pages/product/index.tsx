@@ -27,15 +27,15 @@ const responsive = {
 };
 
 const productItems = [
-  { name: "Vape Pens", image: "/images/product/vapepen.png" },
-  { name: "Flower", image: "/images/product/flower.png" },
-  { name: "Concentrates", image: "/images/product/concentrates.png" },
-  { name: "Edibles", image: "/images/product/product/edibles.png" },
-  { name: "CBD", image: "/images/product/CBD.png" },
-  { name: "Gear", image: "/images/product/gear.png" },
-  { name: "Cultivation", image: "/images/product/Cultivation.png" },
-  { name: "Topicals", image: "/images/product/topicals.png" },
-  { name: "Pre Roll", image: "/images/product/preroll.png" },
+  { name: "Vape Pens", imgUrl: "/images/product/vapepen.png" },
+  { name: "Flower", imgUrl: "/images/product/flower.png" },
+  { name: "Concentrates", imgUrl: "/images/product/concentrates.png" },
+  // { name: "Edibles", imgUrl: "/images/product/product/flower.png" },
+  { name: "CBD", imgUrl: "/images/product/CBD.png" },
+  { name: "Gear", imgUrl: "/images/product/gear.png" },
+  { name: "Cultivation", imgUrl: "/images/product/Cultivation.png" },
+  { name: "Topicals", imgUrl: "/images/product/topicals.png" },
+  { name: "Pre Roll", imgUrl: "/images/product/preroll.png" },
 ];
 
 const vapePens = [
@@ -143,7 +143,7 @@ export default function products() {
                 <div key={idx} className="rounded ">
                   <div className="relative w-full h-40">
                     <Image
-                      src={item.image}
+                      src={item.imgUrl}
                       alt="Picture of the author"
                       layout="fill" // required
                       objectFit="cover" // change to suit your needs

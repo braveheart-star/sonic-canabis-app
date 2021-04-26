@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import useSWR from "swr";
 
 import { Maybe } from "./Maybe";
@@ -49,11 +50,11 @@ const providers = [
 ];
 
 export const Header = () => {
+  const router = useRouter();
+  const { pathname } = router;
+  console.log("🚀 ~ file: Header.tsx ~ line 55 ~ Header ~ query", pathname);
+
   const { data: accessToken } = useSWR("accessToken", storage);
-  console.log(
-    "🚀 ~ file: Header.tsx ~ line 26 ~ Header ~ currentUser",
-    accessToken
-  );
   const isLoggedIn = checkLogin(accessToken);
 
   const [dropdown, setDropdown] = useState(false);
@@ -247,7 +248,13 @@ export const Header = () => {
             {providers.map((item, idx) => {
               return (
                 <Link href={item.url} key={idx}>
-                  <button className="font-semibold tracking-wide focus:outline-none sm:tracking-normal">
+                  <button
+                    className={`font-semibold tracking-wide focus:outline-none sm:tracking-normal ${
+                      pathname === item.url
+                        ? " text-lime-100 font-bold"
+                        : " text-white"
+                    }`}
+                  >
                     {item.name}
                   </button>
                 </Link>

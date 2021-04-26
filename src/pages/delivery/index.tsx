@@ -172,7 +172,7 @@ export default function delivery() {
               onClick={() => {
                 setActiveItem(0);
               }}
-              className={`py-2 focus:outline-none ${
+              className={`py-2 focus:outline-none font-bold ${
                 activeItem === 0
                   ? " text-green-700 border-b-2 border-green-400"
                   : ""
@@ -184,7 +184,7 @@ export default function delivery() {
               onClick={() => {
                 setActiveItem(1);
               }}
-              className={`py-2 focus:outline-none ${
+              className={`py-2 focus:outline-none font-bold ${
                 activeItem === 1
                   ? " text-green-700 border-b-2 border-green-400"
                   : ""
