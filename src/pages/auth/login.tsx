@@ -5,8 +5,14 @@ import Link from "next/link";
 import { GoogleLogin } from "react-google-login";
 import { registerPayload } from "../../utils/type";
 import { validateEmail, validatePassword } from "../../utils/function";
+import UserAPI from "../../lib/user";
+import Swal from "sweetalert2";
+import { mutate } from "swr";
+import { useRouter } from "next/router";
 
 export default function login() {
+  const router = useRouter();
+
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
   const [loginPayload, setLoginPayload] = useState<registerPayload>({
@@ -33,8 +39,27 @@ export default function login() {
     });
   }
 
-  function handleLogin() {
+  async function handleLogin() {
     if (!handleFormValidation()) return;
+
+    const { data, status } = await UserAPI.login(
+      loginPayload.email,
+      loginPayload.password
+    );
+
+    if (status !== 200 || data?.error) {
+      Swal.fire("Error", data.message, "error");
+      return;
+    }
+    if (!!data.access_token) {
+      Swal.fire("Success", "Successfully logged in!", "success");
+      window.localStorage.setItem(
+        "accessToken",
+        JSON.stringify(data.access_token)
+      );
+      mutate("accessToken", data.access_token);
+      router.push("/");
+    }
   }
 
   const responseGoogle = (response: any) => {

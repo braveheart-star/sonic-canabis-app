@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 import { Maybe } from "./common/Maybe";
 import storage from "../utils/storage";
@@ -10,8 +10,14 @@ import styles from "../styles/components.module.scss";
 
 export const MobileDrop = (props: any) => {
   const { dropdown } = props;
-  const { data: currentUser } = useSWR("user", storage);
-  const isLoggedIn = checkLogin(currentUser);
+  const { data: accessToken } = useSWR("accessToken", storage);
+  const isLoggedIn = checkLogin(accessToken);
+
+  const handleLogout = async () => {
+    window.localStorage.removeItem("user");
+    mutate("user", null);
+    mutate("accessToken", "");
+  };
 
   return (
     <div
@@ -45,7 +51,10 @@ export const MobileDrop = (props: any) => {
           </Maybe>
           <Maybe condition={isLoggedIn}>
             <div className="py-4 ">
-              <button className="px-4 py-1 font-bold text-white bg-yellow-500 rounded-lg sm:px-6 sm:py-2">
+              <button
+                onClick={handleLogout}
+                className="px-4 py-1 font-bold text-white bg-yellow-500 rounded-lg sm:px-6 sm:py-2"
+              >
                 Log out
               </button>
             </div>

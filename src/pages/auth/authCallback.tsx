@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import UserAPI from "../../lib/user";
 import Swal from "sweetalert2";
 import { mutate } from "swr";
+import UserAPI from "../../lib/user";
 
-export default function callback() {
+export default function authCallback() {
   const router = useRouter();
   const { query } = router;
 

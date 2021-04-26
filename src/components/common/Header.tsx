@@ -22,12 +22,12 @@ const providers = [
 ];
 
 export const Header = () => {
-  const { data: currentUser } = useSWR("user", storage);
+  const { data: accessToken } = useSWR("accessToken", storage);
   console.log(
     "🚀 ~ file: Header.tsx ~ line 26 ~ Header ~ currentUser",
-    currentUser
+    accessToken
   );
-  const isLoggedIn = checkLogin(currentUser);
+  const isLoggedIn = checkLogin(accessToken);
 
   const [dropdown, setDropdown] = useState(false);
   const [accountDrop, setAccountDrop] = useState(false);

@@ -1,7 +1,14 @@
 import Link from "next/link";
 import React from "react";
+import { mutate } from "swr";
 
 export const AccountDrop = () => {
+  const handleLogout = async () => {
+    window.localStorage.removeItem("accessToken");
+    mutate("user", null);
+    mutate("accessToken", "");
+  };
+
   return (
     <div className="absolute right-0 z-20 top-8">
       <div className="w-56 text-gray-600 bg-white divide-y rounded shadow-md">
@@ -35,9 +42,12 @@ export const AccountDrop = () => {
           </Link>
         </div>
         <div className="p-2 ">
-          <p className="p-2 rounded cursor-pointer hover:bg-gray-100">
+          <button
+            onClick={handleLogout}
+            className="w-full p-2 text-left rounded cursor-pointer hover:bg-gray-100"
+          >
             Log out
-          </p>
+          </button>
         </div>
       </div>
     </div>

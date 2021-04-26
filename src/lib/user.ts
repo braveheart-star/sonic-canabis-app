@@ -17,17 +17,19 @@ const UserAPI = {
       return error.response;
     }
   },
+
   login: async (email: string, password: string) => {
     try {
       const response = await axios.post(
         `${SERVER_BASE_URL}/user/login`,
-        JSON.stringify({ user: { email, password } }),
+        JSON.stringify({ email, password }),
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
+
       return response;
     } catch (error) {
       return error.response;

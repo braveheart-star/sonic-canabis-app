@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
-import { mutate } from "swr";
 
 import { NotifyStatus, registerPayload } from "../../utils/type";
 import { validateEmail, notify, validatePassword } from "../../utils/function";
