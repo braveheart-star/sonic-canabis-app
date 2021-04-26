@@ -63,6 +63,21 @@ const UserAPI = {
     }
   },
 
+  updateSelf: (token: string) => {
+    console.log("🚀 ~ file: user.ts ~ line 67 ~ token", token);
+    try {
+      const response = axios.get(`${SERVER_BASE_URL}/user/self`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response;
+    } catch (error) {
+      return error.response;
+    }
+  },
+
   save: async (user: any) => {
     try {
       const response = await axios.put(

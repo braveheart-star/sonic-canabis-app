@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
@@ -11,8 +10,6 @@ import { validateEmail, notify, validatePassword } from "../../utils/function";
 import UserAPI from "../../lib/user";
 
 export default function register() {
-  const router = useRouter();
-
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
   const [emailValid, setEmailValid] = useState(true);
@@ -51,8 +48,6 @@ export default function register() {
         Swal.fire("Error", data.error, "error");
       }
       if (data?.user) {
-        window.localStorage.setItem("user", JSON.stringify(data.user));
-        mutate("user", data.user);
         Swal.fire("Info", "Please check your email", "info");
       }
     } catch (error) {
