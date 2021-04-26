@@ -80,7 +80,7 @@ export default function brand() {
           <p className="p-4 text-lg font-bold text-gray-700 ">
             Featured Brands
           </p>
-          <Carousel responsive={responsive} arrows={false} infinite={true}>
+          <Carousel responsive={responsive} infinite={true}>
             {brandMockData.map((item, idx) => {
               return (
                 <div className="w-full h-full p-2 mx-auto text-sm " key={idx}>
