@@ -83,7 +83,7 @@ export default function delivery() {
               }}
               className={`py-2 focus:outline-none font-bold ${
                 activeItem === 0
-                  ? " text-green-700 border-b-2 border-green-400"
+                  ? " text-green-700 border-b-2 border-green-500"
                   : ""
               }`}
             >
@@ -95,7 +95,7 @@ export default function delivery() {
               }}
               className={`py-2 focus:outline-none font-bold ${
                 activeItem === 1
-                  ? " text-green-700 border-b-2 border-green-400"
+                  ? " text-green-700 border-b-2 border-green-500"
                   : ""
               }`}
             >
@@ -199,14 +199,14 @@ export default function delivery() {
         </div>
         <div className="space-y-4 sm:p-3">
           <p className="text-lg font-bold tracking-wider ">Featured Brands</p>
-          <Carousel responsive={responsive} arrows={false} infinite={true}>
+          <Carousel responsive={responsive} infinite={true}>
             {brandMockData.map((item, idx) => {
               return (
                 <div className="w-full h-full p-2 mx-auto text-sm " key={idx}>
                   <div className="h-full p-4 space-y-1 border rounded">
                     <div className="w-full">
                       <Image
-                        src={item.img}
+                        src={item.imgUrl}
                         alt="slide"
                         width="1000"
                         height="800"
@@ -306,7 +306,7 @@ export default function delivery() {
   );
 }
 
-function renderStar(rate: string) {
+export function renderStar(rate: string) {
   return (
     <div className="flex space-x-1 ">
       {[...Array(Math.floor(Number(rate))).keys()].map((item) => {
@@ -334,7 +334,7 @@ interface DisplayProps {
   product: any;
 }
 
-const DisplayItems = (props: DisplayProps) => {
+export const DisplayItems = (props: DisplayProps) => {
   const { product } = props;
   const [show, setShow] = useState(false);
   return (
@@ -343,7 +343,7 @@ const DisplayItems = (props: DisplayProps) => {
         <div className="flex items-center space-x-4 ">
           <div className="relative flex-shrink-0 w-12 h-12 rounded ">
             <Image
-              src={product.img}
+              src={product.imgUrl}
               alt="Picture of the author"
               layout="fill" // required
               objectFit="cover" // change to suit your needs
