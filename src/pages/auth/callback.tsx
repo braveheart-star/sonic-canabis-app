@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import { mutate } from "swr";
-import UserAPI from "../../lib/user";
+import UserAPI from "../../lib/userApi";
 
 export default function callback() {
   const router = useRouter();

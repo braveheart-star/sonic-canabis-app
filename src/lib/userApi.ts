@@ -80,6 +80,25 @@ const UserAPI = {
     }
   },
 
+  socialAuth: async (profile: any) => {
+    try {
+      const response = await axios.post(
+        `${SERVER_BASE_URL}/user/social`,
+        JSON.stringify(profile),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      return response;
+    } catch (error) {
+      return error.response;
+    }
+  },
+
+  // from conduit
   save: async (user: any) => {
     try {
       const response = await axios.put(
