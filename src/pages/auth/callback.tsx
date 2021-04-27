@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { mutate } from "swr";
 import UserAPI from "../../lib/user";
 
-export default function authCallback() {
+export default function callback() {
   const router = useRouter();
   const { query } = router;
 
