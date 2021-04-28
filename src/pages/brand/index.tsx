@@ -7,7 +7,7 @@ import { Concentrate } from "../../components/brands/Concentrate";
 import { Vapepens } from "../../components/brands/Vapepens";
 import { Edibles } from "../../components/brands/Edibles";
 import { CBD } from "../../components/brands/CBD";
-import { THC } from "../../components/brands/Thc";
+import { CbdThc } from "../../components/brands/CbdThc";
 import { All } from "../../components/brands/All";
 
 const brands = [
@@ -43,7 +43,7 @@ const brands = [
   {
     name: "CBD/THC",
     url: "",
-    component: THC,
+    component: CbdThc,
   },
 
   {

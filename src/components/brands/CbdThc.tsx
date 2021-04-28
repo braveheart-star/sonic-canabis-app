@@ -7,7 +7,7 @@ import {
 } from "../../utils/data";
 import { renderBrands } from "./Discover";
 
-export const THC = () => {
+export const CbdThc = () => {
   return (
     <div>
       <div className="p-4 space-y-2">
