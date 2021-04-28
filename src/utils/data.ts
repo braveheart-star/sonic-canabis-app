@@ -309,8 +309,8 @@ export const flowerMockData = [
 
 export const concentrateMockData = [
   {
-    title: "Caliva | Reef Leaf - Indica",
-    rate: "4.9",
+    title: "Bloom Drop | Green Crack",
+    rate: "4.3",
     member: "21",
     count: "13",
     usage: "Medical & Recreational",
@@ -323,14 +323,14 @@ export const concentrateMockData = [
     flowerNumber: "212",
     vapeNumber: "115",
     otherNumber: "121",
-    imgUrl: "/images/brands/flower/bud/1.png",
+    imgUrl: "/images/brands/concentrate/budder/1.png",
   },
 
   {
-    title: "Featured Farms Infused Pre Rolls - Purple Thai",
-    rate: "4.3",
-    member: "12",
-    count: "42",
+    title: "Sour Chem Live Resin Sauce",
+    rate: "4.7",
+    member: "21",
+    count: "32",
     usage: "Medical & Recreational",
     price: "$50 minimum",
     availableOrder: true,
@@ -341,14 +341,14 @@ export const concentrateMockData = [
     flowerNumber: "213",
     vapeNumber: "215",
     otherNumber: "332",
-    imgUrl: "/images/brands/flower/bud/2.png",
+    imgUrl: "/images/brands/concentrate/budder/2.png",
   },
 
   {
-    title: "Mimosa - Flower 3.5g",
-    rate: "4.7",
-    member: "567",
-    count: "643",
+    title: "BLACKBERRY KUSH - CURATED LIVE RESIN",
+    rate: "4.2",
+    member: "123",
+    count: "43",
     usage: "Medical & Recreational",
     price: "$5 fee, $50 minimum",
     availableOrder: true,
@@ -359,11 +359,11 @@ export const concentrateMockData = [
     flowerNumber: "442",
     vapeNumber: "421",
     otherNumber: "321",
-    imgUrl: "/images/brands/flower/bud/3.png",
+    imgUrl: "/images/brands/concentrate/budder/3.png",
   },
 
   {
-    title: "Biscotti - Sungrown - Half Oz",
+    title: "cLEMENTINE | Sativa Live Sugar 1g",
     rate: "3.9",
     member: "12",
     count: "32",
@@ -377,11 +377,11 @@ export const concentrateMockData = [
     flowerNumber: "534",
     vapeNumber: "11",
     otherNumber: "21",
-    imgUrl: "/images/brands/flower/bud/4.png",
+    imgUrl: "/images/brands/concentrate/budder/4.png",
   },
 
   {
-    title: "Denver Cookies(28g)",
+    title: "King Louis Distillate",
     rate: "4.6",
     member: "364",
     count: "213",
@@ -395,6 +395,6 @@ export const concentrateMockData = [
     flowerNumber: "42",
     vapeNumber: "155",
     otherNumber: "671",
-    imgUrl: "/images/brands/flower/bud/5.png",
+    imgUrl: "/images/brands/concentrate/budder/5.png",
   },
 ];

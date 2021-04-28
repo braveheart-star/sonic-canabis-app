@@ -5,8 +5,12 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import { renderStar } from "../../pages/delivery";
-import { EmptyHeartIcon } from "../../components/icons/EmptyHeartIcon";
-import { brandMockData, flowerMockData, vapeMockData } from "../../utils/data";
+import {
+  brandMockData,
+  concentrateMockData,
+  flowerMockData,
+  vapeMockData,
+} from "../../utils/data";
 
 const responsive = {
   desktop: {
@@ -53,6 +57,38 @@ export const Discover = () => {
             the cannabis plant.
           </p>
           {renderBrands(flowerMockData)}
+        </>
+      </div>
+
+      <div className="p-4 space-y-2">
+        <>
+          <p className="text-lg font-bold text-gray-700 ">Concentrates</p>
+          <p className="text-sm text-gray-500 ">
+            Products from the canabis plant that have been processed to extract
+            the cannabinoids and terpense.
+          </p>
+          {renderBrands(concentrateMockData)}
+        </>
+      </div>
+
+      <div className="p-4 space-y-2">
+        <>
+          <p className="text-lg font-bold text-gray-700 ">Edibles</p>
+          <p className="text-sm text-gray-500 ">
+            Edibles are food items made with cannabis flower or concentrate
+          </p>
+          {renderBrands(flowerMockData)}
+        </>
+      </div>
+
+      <div className="p-4 space-y-2">
+        <>
+          <p className="text-lg font-bold text-gray-700 ">CBD/THC</p>
+          <p className="text-sm text-gray-500 ">
+            Find CBD-rich products that contain full-spectrum oil or ratios of
+            CBD and THC
+          </p>
+          {renderBrands(vapeMockData)}
         </>
       </div>
     </div>
