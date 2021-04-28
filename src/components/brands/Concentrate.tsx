@@ -12,12 +12,12 @@ export const Concentrate = () => {
     <div>
       <div className="p-4 space-y-2">
         <p className="text-lg font-bold text-gray-700 ">Budder</p>
-        {renderBrands(flowerMockData)}
+        {renderBrands(vapeMockData)}
       </div>
 
       <div className="p-4 space-y-2">
         <p className="text-lg font-bold text-gray-700 ">Crumble</p>
-        {renderBrands(brandMockData)}
+        {renderBrands(flowerMockData)}
       </div>
 
       <div className="p-4 space-y-2">

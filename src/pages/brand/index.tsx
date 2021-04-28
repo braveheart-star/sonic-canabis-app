@@ -72,7 +72,7 @@ export default function brand() {
                 <Link href={item.url} key={idx}>
                   <button
                     onClick={() => setItem(item)}
-                    className={`lg:font-semibold w-full text-sm lg:text-base tracking-wide px-3 focus:outline-none sm:tracking-normal ${
+                    className={`lg:font-semibold w-full font-semibold text-base tracking-wide px-3 focus:outline-none sm:tracking-normal ${
                       clickedItem === item
                         ? " text-green-500 border-b-2 border-green-500"
                         : " text-gray-500 "
