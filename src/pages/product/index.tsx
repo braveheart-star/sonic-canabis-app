@@ -5,6 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import { Banner } from "../../components/common/Banner";
 import { Layout } from "../../components/common/Layout";
+import { BrowseByCategory } from "../../components/common/BrowseByCategory";
 
 const responsive = {
   desktop: {
@@ -25,18 +26,6 @@ const responsive = {
     partialVisibilityGutter: 10,
   },
 };
-
-const productItems = [
-  { name: "Vape Pens", imgUrl: "/images/product/vapepen.png" },
-  { name: "Flower", imgUrl: "/images/product/flower.png" },
-  { name: "Concentrates", imgUrl: "/images/product/concentrates.png" },
-  // { name: "Edibles", imgUrl: "/images/product/product/flower.png" },
-  { name: "CBD", imgUrl: "/images/product/CBD.png" },
-  { name: "Gear", imgUrl: "/images/product/gear.png" },
-  { name: "Cultivation", imgUrl: "/images/product/Cultivation.png" },
-  { name: "Topicals", imgUrl: "/images/product/topicals.png" },
-  { name: "Pre Roll", imgUrl: "/images/product/preroll.png" },
-];
 
 const vapePens = [
   {
@@ -134,28 +123,7 @@ export default function products() {
       <div className="container px-2 mx-auto space-y-8 sm:px-4 max-w-7xl">
         <Banner content="Find your favorite products" />
         <div className="p-4 bg-white border rounded-lg shadow lg:py-8 ">
-          <p className="p-4 text-xl font-bold tracking-wider ">
-            Browse by Category
-          </p>
-          <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-4">
-            {productItems.map((item, idx) => {
-              return (
-                <div key={idx} className="rounded ">
-                  <div className="relative w-full h-40">
-                    <Image
-                      src={item.imgUrl}
-                      alt="Picture of the author"
-                      layout="fill" // required
-                      objectFit="cover" // change to suit your needs
-                      className="rounded shadow-sm " // just an example
-                    />
-                  </div>
-                  <p className="p-2 text-center text-gray-600">{item.name}</p>
-                </div>
-              );
-            })}
-          </div>
-
+          <BrowseByCategory />
           <div className="space-y-4 ">
             <ProductItem title="Vape Pens" imageInfo={vapePens} />
             <ProductItem title="Flower" imageInfo={flower} />
