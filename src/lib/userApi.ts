@@ -1,7 +1,11 @@
 import axios from "axios";
 
-import { SERVER_BASE_URL } from "../utils/constant";
-
+// import { SERVER_BASE_URL } from "../utils/constant";
+const SERVER_BASE_URL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
+console.log(
+  "🚀 ~ file: userApi.ts ~ line 5 ~ SERVER_BASE_URL",
+  SERVER_BASE_URL
+);
 const UserAPI = {
   current: async () => {
     const user: any = window.localStorage.getItem("user");
