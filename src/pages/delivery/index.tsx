@@ -199,7 +199,7 @@ export default function delivery() {
         </div>
         <div className="space-y-4 sm:p-3">
           <p className="text-lg font-bold tracking-wider ">Featured Brands</p>
-          <Carousel responsive={responsive} infinite={true}>
+          <Carousel responsive={responsive}>
             {brandMockData.map((item, idx) => {
               return (
                 <div className="w-full h-full p-2 mx-auto text-sm " key={idx}>

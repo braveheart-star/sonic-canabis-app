@@ -121,6 +121,24 @@ export const brandMockData = [
     otherNumber: "671",
     imgUrl: "/images/brands/5.png",
   },
+
+  {
+    title: "PAC LA - Downtown LA",
+    rate: "4.7",
+    member: "567",
+    count: "643",
+    usage: "Medical & Recreational",
+    price: "$5 fee, $50 minimum",
+    availableOrder: true,
+    deliveryTime: "20-30min",
+    deliveryFee: "5$",
+    concentrateNumber: "417",
+    edibleNumber: "211",
+    flowerNumber: "442",
+    vapeNumber: "421",
+    otherNumber: "321",
+    imgUrl: "/images/brands/3.png",
+  },
 ];
 
 export const vapeMockData = [
@@ -212,6 +230,23 @@ export const vapeMockData = [
     vapeNumber: "155",
     otherNumber: "671",
     imgUrl: "/images/brands/vape/batteries/5.png",
+  },
+  {
+    title: "Pacific mango Sativa Half Gram Cartridge",
+    rate: "4.5",
+    member: "320",
+    count: "270",
+    usage: "Medical & Recreational",
+    price: "$50 minimum",
+    availableOrder: false,
+    deliveryTime: "60-90min",
+    deliveryFee: "",
+    concentrateNumber: "123",
+    edibleNumber: "323",
+    flowerNumber: "212",
+    vapeNumber: "115",
+    otherNumber: "121",
+    imgUrl: "/images/brands/vape/batteries/1.png",
   },
 ];
 
@@ -305,6 +340,23 @@ export const flowerMockData = [
     otherNumber: "671",
     imgUrl: "/images/brands/flower/bud/5.png",
   },
+  {
+    title: "Featured Farms Infused Pre Rolls - Purple Thai",
+    rate: "4.3",
+    member: "12",
+    count: "42",
+    usage: "Medical & Recreational",
+    price: "$50 minimum",
+    availableOrder: true,
+    deliveryTime: "20-30min",
+    deliveryFee: "5$",
+    concentrateNumber: "167",
+    edibleNumber: "124",
+    flowerNumber: "213",
+    vapeNumber: "215",
+    otherNumber: "332",
+    imgUrl: "/images/brands/flower/bud/2.png",
+  },
 ];
 
 export const concentrateMockData = [
@@ -396,5 +448,23 @@ export const concentrateMockData = [
     vapeNumber: "155",
     otherNumber: "671",
     imgUrl: "/images/brands/concentrate/budder/5.png",
+  },
+
+  {
+    title: "Bloom Drop | Green Crack",
+    rate: "4.3",
+    member: "21",
+    count: "13",
+    usage: "Medical & Recreational",
+    price: "$50 minimum",
+    availableOrder: false,
+    deliveryTime: "60-90min",
+    deliveryFee: "",
+    concentrateNumber: "123",
+    edibleNumber: "323",
+    flowerNumber: "212",
+    vapeNumber: "115",
+    otherNumber: "121",
+    imgUrl: "/images/brands/concentrate/budder/1.png",
   },
 ];

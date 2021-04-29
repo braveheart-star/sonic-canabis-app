@@ -143,7 +143,7 @@ interface ProductItemProps {
   imageInfo: any;
 }
 
-const ProductItem = (props: ProductItemProps) => {
+export const ProductItem = (props: ProductItemProps) => {
   const { title, imageInfo } = props;
 
   return (
@@ -163,7 +163,7 @@ const ProductItem = (props: ProductItemProps) => {
           </svg>
         </button>
       </div>
-      <Carousel responsive={responsive} infinite={true}>
+      <Carousel responsive={responsive}>
         {imageInfo.map((item: any, idx: number) => {
           return (
             <div key={idx} className="p-8 mx-4 border rounded-md shadow-sm">

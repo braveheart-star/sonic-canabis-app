@@ -97,7 +97,7 @@ export const Discover = () => {
 
 export function renderBrands(mockData: any) {
   return (
-    <Carousel responsive={responsive} infinite={true}>
+    <Carousel responsive={responsive}>
       {mockData.map((item: any, idx: number) => {
         return (
           <div className="w-full h-full p-2 mx-auto text-sm " key={idx}>
