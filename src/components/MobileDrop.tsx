@@ -8,7 +8,12 @@ import storage from "../utils/storage";
 import checkLogin from "../utils/checkLogin";
 import styles from "../styles/components.module.scss";
 
-export const MobileDrop = (props: any) => {
+interface MobileDropInterface {
+  dropdown: boolean;
+  setDropdown: Function;
+}
+
+export const MobileDrop = (props: MobileDropInterface) => {
   const { dropdown, setDropdown } = props;
   const { data: accessToken } = useSWR("accessToken", storage);
   const isLoggedIn = checkLogin(accessToken);

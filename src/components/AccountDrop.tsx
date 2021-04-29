@@ -2,10 +2,16 @@ import Link from "next/link";
 import React from "react";
 import { mutate } from "swr";
 
-export const AccountDrop = () => {
+interface AccountDropInterface {
+  setAccountDrop: Function;
+}
+
+export const AccountDrop = (props: AccountDropInterface) => {
+  const { setAccountDrop } = props;
   const handleLogout = async () => {
     window.localStorage.removeItem("accessToken");
     mutate("accessToken", "");
+    setAccountDrop(false);
   };
 
   return (

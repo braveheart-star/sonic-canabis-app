@@ -164,7 +164,7 @@ export const Header = () => {
                         </svg>
                       </button>
                       <Maybe condition={accountDrop}>
-                        <AccountDrop />
+                        <AccountDrop setAccountDrop={setAccountDrop} />
                       </Maybe>
                     </div>
                   </Maybe>
@@ -188,7 +188,7 @@ export const Header = () => {
         </div>
       </div>
 
-      <MobileDrop dropdown setDropdown />
+      <MobileDrop dropdown setDropdown={setDropdown} />
       <Maybe condition={dropdown}>
         <div
           onClick={() => setDropdown(false)}
@@ -268,7 +268,7 @@ function RenderMobile(props: MobileProps) {
               </svg>
             </button>
             <Maybe condition={accountDrop}>
-              <AccountDrop />
+              <AccountDrop setAccountDrop={setAccountDrop} />
             </Maybe>
           </div>
         )}
