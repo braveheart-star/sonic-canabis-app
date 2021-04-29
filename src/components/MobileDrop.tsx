@@ -9,13 +9,14 @@ import checkLogin from "../utils/checkLogin";
 import styles from "../styles/components.module.scss";
 
 export const MobileDrop = (props: any) => {
-  const { dropdown } = props;
+  const { dropdown, setDropdown } = props;
   const { data: accessToken } = useSWR("accessToken", storage);
   const isLoggedIn = checkLogin(accessToken);
 
   const handleLogout = async () => {
     window.localStorage.removeItem("accessToken");
     mutate("accessToken", "");
+    setDropdown(false);
   };
 
   return (

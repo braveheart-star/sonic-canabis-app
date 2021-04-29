@@ -86,6 +86,10 @@ const UserAPI = {
   },
 
   socialAuth: async (profile: any) => {
+    console.log(
+      "🚀 ~ file: userApi.ts ~ line 89 ~ socialAuth: ~ profile",
+      profile
+    );
     try {
       const response = await axios.post(
         `${SERVER_BASE_URL}/user/social`,

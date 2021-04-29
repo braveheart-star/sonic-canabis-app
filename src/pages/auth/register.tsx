@@ -45,7 +45,7 @@ export default function register() {
         registerPayload.password
       );
       if (status !== 200 || data?.error) {
-        Swal.fire("Error", data.error, "error");
+        Swal.fire("Error", data.message, "error");
       }
       if (data?.user) {
         Swal.fire("Info", "Please check your email", "info");

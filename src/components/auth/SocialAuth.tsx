@@ -9,7 +9,9 @@ export const SocialAuth = () => {
 
   async function handleGoogle(res: any) {
     const { data, status } = await UserAPI.socialAuth(res);
-    if (status !== 200) Swal.fire("Warning", data.error, "error");
+    if (status !== 200 || data?.error) {
+      Swal.fire("Error", data.message, "error");
+    }
 
     if (!!data.access_token) {
       Swal.fire("Success", "Successfully logged in!", "success");

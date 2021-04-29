@@ -188,7 +188,7 @@ export const Header = () => {
         </div>
       </div>
 
-      <MobileDrop dropdown={dropdown} />
+      <MobileDrop dropdown setDropdown />
       <Maybe condition={dropdown}>
         <div
           onClick={() => setDropdown(false)}
