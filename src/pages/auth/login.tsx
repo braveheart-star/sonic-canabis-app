@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
+import Router from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
@@ -11,8 +11,6 @@ import { SocialAuth } from "../../components/auth/SocialAuth";
 import UserAPI from "../../lib/userApi";
 
 export default function login() {
-  const router = useRouter();
-
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
   const [loginPayload, setLoginPayload] = useState<registerPayload>({
@@ -58,7 +56,7 @@ export default function login() {
         JSON.stringify(data.access_token)
       );
       mutate("accessToken", data.access_token);
-      router.push("/");
+      Router.push("/");
     }
   }
 

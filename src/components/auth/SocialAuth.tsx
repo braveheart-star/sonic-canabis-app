@@ -1,12 +1,10 @@
-import { useRouter } from "next/router";
+import Router from "next/router";
 import { mutate } from "swr";
 import { GoogleLogin } from "react-google-login";
 import Swal from "sweetalert2";
 import UserAPI from "../../lib/userApi";
 
 export const SocialAuth = () => {
-  const router = useRouter();
-
   async function handleGoogle(res: any) {
     const { data, status } = await UserAPI.socialAuth(res);
     if (status !== 200 || data?.error) {
@@ -20,7 +18,7 @@ export const SocialAuth = () => {
         JSON.stringify(data.access_token)
       );
       mutate("accessToken", data.access_token);
-      router.push("/");
+      Router.push("/");
     }
   }
 
