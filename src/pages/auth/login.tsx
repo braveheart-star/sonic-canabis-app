@@ -51,7 +51,6 @@ export default function login() {
       Swal.fire("Error", data.message, "error");
       return;
     }
-
     if (!!data.access_token) {
       Swal.fire("Success", "Successfully logged in!", "success");
       window.localStorage.setItem(

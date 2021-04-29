@@ -1,6 +1,7 @@
 import axios from "axios";
 
 // import { SERVER_BASE_URL } from "../utils/constant";
+// const SERVER_BASE_URL = "http://127.0.0.1:4000/api";
 const SERVER_BASE_URL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 console.log(
   "🚀 ~ file: userApi.ts ~ line 5 ~ SERVER_BASE_URL",
