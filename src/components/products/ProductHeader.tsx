@@ -10,7 +10,7 @@ export const ProductHeader = () => {
 
   return (
     <div className="bg-green-500 ">
-      <div className="container p-2 px-4 mx-auto  max-w-7xl">
+      <div className="container p-2 px-4 mx-auto max-w-7xl">
         <div className="flex justify-between ">
           <Link href="/">
             <div className="flex-shrink-0 w-16 h-16 mx-auto cursor-pointer ">
@@ -69,7 +69,7 @@ export const ProductHeader = () => {
                     </svg>
                   </button>
                   <Maybe condition={accountDrop}>
-                    <AccountDrop />
+                    <AccountDrop setAccountDrop={setAccountDrop} />
                   </Maybe>
                 </div>
               </Maybe>
