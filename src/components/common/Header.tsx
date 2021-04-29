@@ -33,7 +33,7 @@ const providers = [
   },
   {
     name: "Deals",
-    url: "",
+    url: "/deal",
   },
   {
     name: "Learn",
@@ -188,7 +188,7 @@ export const Header = () => {
         </div>
       </div>
 
-      <MobileDrop dropdown setDropdown={setDropdown} />
+      <MobileDrop dropdown={dropdown} setDropdown={setDropdown} />
       <Maybe condition={dropdown}>
         <div
           onClick={() => setDropdown(false)}

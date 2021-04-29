@@ -65,7 +65,7 @@ export default function brand() {
   return (
     <Layout>
       <div className="w-full ">
-        <div className="flex justify-center w-full px-2 mx-auto ">
+        <div className="flex justify-center w-full px-2 ">
           <div className="flex w-full px-4 py-2 space-x-6 overflow-x-scroll text-center max-w-7xl lg:overflow-auto sm:space-x-4 whitespace-nowrap text-gray-50">
             {brands.map((item, idx) => {
               return (
