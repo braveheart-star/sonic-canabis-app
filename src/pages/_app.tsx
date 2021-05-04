@@ -15,15 +15,13 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
       </Head>
-      <div className="relative flex flex-col w-full min-h-screen ">
-        <motion.main
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <Component {...pageProps} />
-        </motion.main>
-      </div>
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <Component {...pageProps} />
+      </motion.main>
     </div>
   );
 }
