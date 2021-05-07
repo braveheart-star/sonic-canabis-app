@@ -8,7 +8,7 @@ const UserAPI = {
     const user: any = window.localStorage.getItem("user");
     const token = user?.token;
     try {
-      const response = await axios.get(`/user`, {
+      const response = await axios.get(`/api/user`, {
         headers: {
           Authorization: `Token ${encodeURIComponent(token)}`,
         },
@@ -22,7 +22,7 @@ const UserAPI = {
   login: async (email: string, password: string) => {
     try {
       const response = await axios.post(
-        "/user/login",
+        "/api/user/login",
         JSON.stringify({ email, password }),
         {
           headers: {
@@ -39,7 +39,7 @@ const UserAPI = {
   register: async (email: string, password: string) => {
     try {
       const response = await axios.post(
-        "/user/register",
+        "/api/user/register",
         JSON.stringify({ email, password }),
         {
           headers: {
@@ -56,7 +56,7 @@ const UserAPI = {
 
   activate: async (email: string, confirmCode: string) => {
     try {
-      const response = await axios.get("/user/activate", {
+      const response = await axios.get("/api/user/activate", {
         params: { email, confirmCode },
       });
 
@@ -68,7 +68,7 @@ const UserAPI = {
 
   updateSelf: (token: string) => {
     try {
-      const response = axios.get("/user/self", {
+      const response = axios.get("/api/user/self", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -83,7 +83,7 @@ const UserAPI = {
   socialAuth: async (profile: any) => {
     try {
       const response = await axios.post(
-        "/user/social",
+        "/api/user/social",
         JSON.stringify(profile),
         {
           headers: {

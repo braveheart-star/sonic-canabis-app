@@ -2,6 +2,7 @@ import React from "react";
 import { Layout } from "../components/common/Layout";
 import { Card } from "../components/common/Card";
 import { Banner } from "../components/common/Banner";
+
 import {
   brandMockData,
   concentrateMockData,
@@ -9,6 +10,7 @@ import {
   regions,
   vapeMockData,
 } from "../utils/data";
+
 import { BrowseByCategory } from "../components/common/BrowseByCategory";
 
 export default function Home() {
