@@ -90,7 +90,7 @@ const FooterTexts = {
 
 export const Footer = () => {
   return (
-    <div className="bg-gray-100">
+    <div className="relative bg-gray-100">
       <div className="w-full h-10 bg-green-500 " />
       <div className="grid grid-cols-1 p-4 mx-auto space-y-4 lg:py-8 lg:pb-20 max-w-7xl lg:grid-cols-12 lg:space-y-0">
         <div className="col-span-4 space-y-4">
