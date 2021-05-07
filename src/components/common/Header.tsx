@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import axios from "axios";
 
 import { Maybe } from "./Maybe";
 import { MobileDrop } from "../MobileDrop";
@@ -53,8 +54,17 @@ export const Header = () => {
   const { data: accessToken } = useSWR("accessToken", storage);
   const isLoggedIn = checkLogin(accessToken);
 
+  const {
+    data,
+  } = useSWR(
+    "https://geolocation-db.com/json/0f761a30-fe14-11e9-b59f-e53803842572",
+    (url: string) => axios(url).then((r) => r.data)
+  );
+
   const [dropdown, setDropdown] = useState(false);
   const [accountDrop, setAccountDrop] = useState(false);
+
+  function handleSearch(e: any) {}
 
   useEffect((): any => {
     if (dropdown) {
@@ -111,6 +121,8 @@ export const Header = () => {
                       <path d="M10 20S3 10.87 3 7a7 7 0 1 1 14 0c0 3.87-7 13-7 13zm0-11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
                     </svg>
                     <input
+                      onChange={handleSearch}
+                      value={data?.city}
                       placeholder="Location"
                       className="w-full text-green-500 placeholder-green-500 bg-gray-100 focus:outline-none"
                     />
