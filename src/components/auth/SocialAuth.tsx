@@ -1,11 +1,14 @@
 import Router from "next/router";
 import { mutate } from "swr";
-import { GoogleLogin } from "react-google-login";
 import Swal from "sweetalert2";
+import { GoogleLogin } from "react-google-login";
+// import FacebookLogin from "react-facebook-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+
 import UserAPI from "../../lib/userApi";
 
 export const SocialAuth = () => {
-  async function handleGoogle(res: any) {
+  async function handleResponse(res: any) {
     const { data, status } = await UserAPI.socialAuth(res);
     if (status !== 200 || data?.error) {
       Swal.fire("Error", data.message, "error");
@@ -24,24 +27,52 @@ export const SocialAuth = () => {
 
   const responseGoogle = (response: any) => {
     if (response.accessToken.length > 0) {
-      handleGoogle(response.profileObj);
+      handleResponse(response.profileObj.email);
+    }
+  };
+
+  const responseFacebook = (response: any) => {
+    if (response.accessToken.length > 0) {
+      handleResponse(response.email);
     }
   };
 
   return (
     <div className="grid grid-cols-1 space-y-2 sm:space-y-0 sm:gap-x-4 sm:grid-cols-2">
-      <button className="flex items-center justify-center w-full h-10 mx-auto space-x-2 text-sm text-gray-600 border border-gray-400 rounded lg:h-12">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          className="w-8 h-8 text-blue-500 fill-current"
-        >
-          <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-        </svg>
-        <p>Continue with Facebook</p>
-      </button>
+      <FacebookLogin
+        appId="3098043963776528"
+        autoLoad
+        fields="name,email,picture"
+        callback={responseFacebook}
+        render={(renderProps: any) => (
+          // <button onClick={renderProps.onClick}>
+          //   <p>Continue with Facebook</p>
+          // </button>
+
+          <button
+            onClick={renderProps.onClick}
+            className="flex items-center justify-center w-full h-10 mx-auto space-x-2 text-sm text-gray-600 border border-gray-400 rounded lg:h-12"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className="w-8 h-8 text-blue-500 fill-current"
+            >
+              <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+            </svg>
+            <p>Continue with Facebook</p>
+          </button>
+        )}
+      />
+
+      {/* <FacebookLogin
+        appId="3098043963776528"
+        fields="name,email,picture"
+        callback={responseFacebook}
+        cssClass="text-white bg-blue-400 p-2 w-full border rounded"
+      /> */}
 
       <GoogleLogin
         clientId={String(process.env.NEXT_PUBLIC_GOOGLE_ID)}

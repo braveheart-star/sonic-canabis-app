@@ -80,11 +80,12 @@ const UserAPI = {
     }
   },
 
-  socialAuth: async (profile: any) => {
+  socialAuth: async (email: string) => {
     try {
       const response = await axios.post(
         "/api/user/social",
-        JSON.stringify(profile),
+        JSON.stringify({ email }),
+
         {
           headers: {
             "Content-Type": "application/json",
